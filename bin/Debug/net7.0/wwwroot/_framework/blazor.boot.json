@@ -1,7 +1,7 @@
 {
   "entryAssembly": "FlexyBox.web",
   "resources": {
-    "hash": "sha256-KZz67gS/tuc5wSKd+TIFLca4YisLJ4UJPQHGC3dQWOE=",
+    "hash": "sha256-fFmmdtiKKofkxdMn3CFQTCodPPnzvMN5Dttm2RP1AK0=",
     "runtime": {
       "dotnet.7.0.20.hqs5bjbv9e.js": "sha256-eaJTmow4t8eE7FZMZR5Ja41JMOefGCbIYDTdpclGsac=",
       "dotnet.timezones.blat": "sha256-gbATD5HDsHYtW8vdPYh9iSBY4O5CjvMeCSF5xXWF1xo=",
@@ -13,9 +13,11 @@
     "assembly": {
       "Microsoft.AspNetCore.Authorization.dll": "sha256-JBqO8nNDacAcNVL9TJjoOdh0T7mtVksgoYZ8FJ1KivQ=",
       "Microsoft.AspNetCore.Components.dll": "sha256-MJV8iLOXJdGIq2WrZGUtr55ULm04/vogrjOMFSE5MtE=",
+      "Microsoft.AspNetCore.Components.Authorization.dll": "sha256-tofHrdEnEuVzkLL6l+XRZvGCQoLOhK0X6aUyxeRgPXw=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-OjyhyfJVTIr8E0JBti7x2Cc74AwqBxMekDwJdWRKQFY=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-3Q1vvC7bBY7gWF1eTbdTNC6Mra8TjLcF/sE6wfxQMS0=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-XRehAT8XvmJzCwJH4rRzaZT+GYkSOFpF33hFkyyIbI0=",
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": "sha256-s3c/V945HfAyCcXs0uJSgOW5DW+LLTRKUcH04EIIS2U=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-CXcH8l3HgemYCNYyEaSFeyzz5cMyu8K2Z9pXGlv3vSU=",
       "Microsoft.Extensions.Configuration.dll": "sha256-PqQvp77oZ4+uuy2ElXk8AU9I6RfZSf18UGTrd4rulOo=",
       "Microsoft.Extensions.Configuration.Abstractions.dll": "sha256-CnS3b9EMFQmETBUVEgtcron4DBsfFdcVt3zfCP6Uflg=",
@@ -202,10 +204,10 @@
       "mscorlib.dll": "sha256-HYyp9hO+GKFyupcEiY1PxtBBXbHzefsO3Q8RiQTaNCA=",
       "netstandard.dll": "sha256-N5CcC3sLzGBesbmeJAp5bwxABN9u7SwkIO5qfFjzoik=",
       "System.Private.CoreLib.dll": "sha256-bJS1DJmhjP7PvegYG+Z8O9EDtRY78HKinA3LUMVLlSQ=",
-      "FlexyBox.web.dll": "sha256-bv7kKOQRcVdvs+i2WXXXthJI2kBNtaRUf+TNorGVZFc="
+      "FlexyBox.web.dll": "sha256-tp9QSoWaWkEMz7Q+mZJ4wlXmrCIKyd9/c7v7wvqd/YA="
     },
     "pdb": {
-      "FlexyBox.web.pdb": "sha256-Ygl3Y/vVKSbH00JT6EOSrnLrTOGqBv9Pitx3pjWuZlc="
+      "FlexyBox.web.pdb": "sha256-9+w9kEc89SuODUrq7TpGxQJPKPdzFjXwSsCehmfBG3M="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
@@ -218,7 +220,9 @@
   "debugBuild": true,
   "debugLevel": 0,
   "linkerEnabled": false,
-  "config": [],
+  "config": [
+    "appsettings.json"
+  ],
   "icuDataMode": 0,
   "extensions": {
     "blazor": {}

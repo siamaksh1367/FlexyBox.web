@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sXbISTB2duCHF1gxXgYNUDYYff/BMihmpttXb3ZXFjo=",
+  "Hash": "e2UfZ6JECXCE5tA969F3AeYJ/pe1dWz34eCPKcmxULo=",
   "Source": "FlexyBox.web",
   "BasePath": "/",
   "Mode": "Root",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.18\\staticwebassets\\AuthenticationService.js",
+      "SourceId": "Microsoft.AspNetCore.Components.WebAssembly.Authentication",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.18\\staticwebassets\\",
+      "BasePath": "_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication",
+      "RelativePath": "AuthenticationService.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.18\\staticwebassets\\AuthenticationService.js"
+    },
     {
       "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.boot.json",
       "SourceId": "FlexyBox.web",
@@ -226,6 +245,25 @@
       "OriginalItemSpec": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.18\\lib\\net7.0\\Microsoft.AspNetCore.Authorization.dll"
     },
     {
+      "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Authorization.dll",
+      "SourceId": "FlexyBox.web",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.authorization\\7.0.18\\lib\\net7.0\\Microsoft.AspNetCore.Components.Authorization.dll"
+    },
+    {
       "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.dll",
       "SourceId": "FlexyBox.web",
       "SourceType": "Computed",
@@ -281,6 +319,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.18\\lib\\net7.0\\Microsoft.AspNetCore.Components.Web.dll"
+    },
+    {
+      "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll",
+      "SourceId": "FlexyBox.web",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.18\\lib\\net7.0\\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll"
     },
     {
       "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.WebAssembly.dll",
@@ -5983,6 +6040,25 @@
       "OriginalItemSpec": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.IO.Compression.ZipFile.dll"
     },
     {
+      "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\obj\\Debug\\net7.0\\compressed\\l4r1kmc1bc.gz",
+      "SourceId": "FlexyBox.web",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Authorization.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Authorization.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Authorization.dll"
+    },
+    {
       "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\obj\\Debug\\net7.0\\compressed\\l5k0zw3dz7.gz",
       "SourceId": "FlexyBox.web",
       "SourceType": "Computed",
@@ -6418,6 +6494,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.IO.Pipes.dll"
+    },
+    {
+      "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\obj\\Debug\\net7.0\\compressed\\qg2y2gli4p.gz",
+      "SourceId": "FlexyBox.web",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll"
     },
     {
       "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\obj\\Debug\\net7.0\\compressed\\qgq3q8i5ec.gz",
@@ -7653,6 +7748,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.ComponentModel.dll"
+    },
+    {
+      "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\wwwroot\\appsettings.json",
+      "SourceId": "FlexyBox.web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "appsettings.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "settings",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\appsettings.json"
     },
     {
       "Identity": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\wwwroot\\index.html",
