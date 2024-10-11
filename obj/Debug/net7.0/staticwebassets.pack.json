@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\FlexyBox.web\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\FlexyBox.web\\obj\\Debug\\net7.0\\compressed\\scbwc3rydp.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\FlexyBox.web\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\FlexyBox.web\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.FlexyBox.web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.FlexyBox.web.props",
+      "PackagePath": "build\\FlexyBox.web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.FlexyBox.web.props",
+      "PackagePath": "buildMultiTargeting\\FlexyBox.web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.FlexyBox.web.props",
+      "PackagePath": "buildTransitive\\FlexyBox.web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
