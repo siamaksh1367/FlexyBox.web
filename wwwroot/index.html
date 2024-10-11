@@ -5,21 +5,25 @@
     <meta charset="utf-8" />
     <title>FlexyBox.web</title>
     <base href="/" />
-    <link href="css/app.css" rel="stylesheet" />
-    
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="FlexyBox.web.styles.css" rel="stylesheet" /> -->
 </head>
 
 <body>
-    <div id="app">Loading...</div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+    <div id="app">
+        <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="spinner-border" role="status">
+            </div>
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
+
+
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
 </body>
 
 </html>
