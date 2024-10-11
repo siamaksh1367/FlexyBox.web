@@ -26,8 +26,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/source/repos/FlexyBox/FlexyBox.web/Components/AccessControl.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2Nlc3NDb250cm9sLnJhem9y
+[D:/source/repos/FlexyBox/FlexyBox.web/Components/AddCategory.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBZGRDYXRlZ29yeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/source/repos/FlexyBox/FlexyBox.web/Components/Authentication.razor]
@@ -44,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/source/repos/FlexyBox/FlexyBox.web/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/repos/FlexyBox/FlexyBox.web/Pages/Admin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/source/repos/FlexyBox/FlexyBox.web/Pages/Index.razor]
