@@ -1649,3 +1649,11 @@ D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\FlexyBox.web.dll
 D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\refint\FlexyBox.web.dll
 D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\FlexyBox.web.pdb
 D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\ref\FlexyBox.web.dll
+D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll.gz
+D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll
+D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\compressed\l4r1kmc1bc.gz
+D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\compressed\qg2y2gli4p.gz

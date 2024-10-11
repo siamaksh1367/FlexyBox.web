@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "OlC5nIv9JGM=",
+  "dgSpecHash": "XwZUHvq9Pwo=",
   "success": true,
   "projectFilePath": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\FlexyBox.web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.18\\microsoft.aspnetcore.authorization.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.18\\microsoft.aspnetcore.components.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.18\\microsoft.aspnetcore.components.analyzers.7.0.18.nupkg.sha512",
+    "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.authorization\\7.0.18\\microsoft.aspnetcore.components.authorization.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.18\\microsoft.aspnetcore.components.forms.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.18\\microsoft.aspnetcore.components.web.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\7.0.18\\microsoft.aspnetcore.components.webassembly.7.0.18.nupkg.sha512",
+    "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\7.0.18\\microsoft.aspnetcore.components.webassembly.authentication.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\7.0.18\\microsoft.aspnetcore.components.webassembly.devserver.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.18\\microsoft.aspnetcore.metadata.7.0.18.nupkg.sha512",
     "C:\\Users\\sisha\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
