@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
     },
     {
+      "Id": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\obj\\Debug\\net7.0\\scopedcss\\bundle\\FlexyBox.web.styles.css",
+      "PackagePath": "staticwebassets\\FlexyBox.web.styles.css"
+    },
+    {
       "Id": "D:\\source\\repos\\FlexyBox\\FlexyBox.web\\wwwroot\\appsettings.json",
       "PackagePath": "staticwebassets\\appsettings.json"
     },

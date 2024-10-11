@@ -1657,3 +1657,5 @@ D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\Microsoft.AspNetCore.Comp
 D:\source\repos\FlexyBox\FlexyBox.web\bin\Debug\net7.0\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
 D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\compressed\l4r1kmc1bc.gz
 D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\compressed\qg2y2gli4p.gz
+D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\scopedcss\Components\AuthorizedProfile.razor.rz.scp.css
+D:\source\repos\FlexyBox\FlexyBox.web\obj\Debug\net7.0\scopedcss\projectbundle\FlexyBox.web.bundle.scp.css

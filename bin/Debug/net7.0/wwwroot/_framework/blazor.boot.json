@@ -1,7 +1,7 @@
 {
   "entryAssembly": "FlexyBox.web",
   "resources": {
-    "hash": "sha256-fFmmdtiKKofkxdMn3CFQTCodPPnzvMN5Dttm2RP1AK0=",
+    "hash": "sha256-NCzTDbpwT3dtisupi8NQjUH0swXUse+B+IpSRi1weSo=",
     "runtime": {
       "dotnet.7.0.20.hqs5bjbv9e.js": "sha256-eaJTmow4t8eE7FZMZR5Ja41JMOefGCbIYDTdpclGsac=",
       "dotnet.timezones.blat": "sha256-gbATD5HDsHYtW8vdPYh9iSBY4O5CjvMeCSF5xXWF1xo=",
@@ -204,10 +204,10 @@
       "mscorlib.dll": "sha256-HYyp9hO+GKFyupcEiY1PxtBBXbHzefsO3Q8RiQTaNCA=",
       "netstandard.dll": "sha256-N5CcC3sLzGBesbmeJAp5bwxABN9u7SwkIO5qfFjzoik=",
       "System.Private.CoreLib.dll": "sha256-bJS1DJmhjP7PvegYG+Z8O9EDtRY78HKinA3LUMVLlSQ=",
-      "FlexyBox.web.dll": "sha256-tp9QSoWaWkEMz7Q+mZJ4wlXmrCIKyd9/c7v7wvqd/YA="
+      "FlexyBox.web.dll": "sha256-Wj+6OXU4X7DpAItDDtArB/sGwFpQks8xeqNKmGjAw/I="
     },
     "pdb": {
-      "FlexyBox.web.pdb": "sha256-9+w9kEc89SuODUrq7TpGxQJPKPdzFjXwSsCehmfBG3M="
+      "FlexyBox.web.pdb": "sha256-3rNhRUL2mcKGZ2CbtnmtZ8pJmmLh86+VD5Zb/EyePEQ="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
