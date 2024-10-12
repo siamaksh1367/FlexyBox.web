@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "FlexyBox.web",
   "resources": {
-    "hash": "sha256-eDAQnaOOD0c42DUJejmtrphTFeXQ8V17GP+xMzNm1CI=",
+    "hash": "sha256-GD8YuRq19WP9P6XBN7x9N1ypN8TAH0S2JVaPwmSfiw4=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.p0j6bzqz34.js": "sha256-juC5sA7gHTLXFEhAKgdM2/RavswpwCtDfjYGsAz2FXg="
     },
@@ -50,12 +50,17 @@
       "Microsoft.Extensions.Configuration.Json.wasm": "sha256-CtLsl9w5UTJXGXTbp+SQxMzt9f/gjQ4EkywrtuCscvU=",
       "Microsoft.Extensions.DependencyInjection.wasm": "sha256-CS+QrPLaogl32aUg+ES1Ef5QGKoMyjt3V+wGoiG+tpw=",
       "Microsoft.Extensions.DependencyInjection.Abstractions.wasm": "sha256-NICKEw2hjoBhl1lvxOBh8cxOIN8kkrGHz3pvV1eLLbY=",
+      "Microsoft.Extensions.Diagnostics.wasm": "sha256-MFVFI2HwI1mQqiiXvaLy8bt3VV9aPzyHpmctfcIyNc8=",
+      "Microsoft.Extensions.Diagnostics.Abstractions.wasm": "sha256-dpN/LMJr0L1oxGxMzPw+PC8Nkzf+2WG8a3ccmvA35DE=",
       "Microsoft.Extensions.FileProviders.Abstractions.wasm": "sha256-IUopixuV8E09mP+TIgRp/lXEbeacXbUTW7cu0v5B9Tc=",
       "Microsoft.Extensions.FileProviders.Physical.wasm": "sha256-MS+zB0xkKhKk/QdE32ZwKtdlrLMLI/y2NAKPUWhcBVg=",
       "Microsoft.Extensions.FileSystemGlobbing.wasm": "sha256-AnWUKd0qJ8ZNKkRC0AFK2cjjszB7reXiP+bXdIi8bic=",
+      "Microsoft.Extensions.Http.wasm": "sha256-N+Tzkk/w6KHM7RAL+KgJZSEePxW2/p5DHYG8y6zUPx0=",
+      "Microsoft.Extensions.Http.Polly.wasm": "sha256-VLN3u6uFvbYSJcazd6XDztJXFz83O+prL3TsgXGO8yg=",
       "Microsoft.Extensions.Logging.wasm": "sha256-pa0M3exxNvk6g5anUwlaPC99Afawsi1GZvJeU1q/ZGM=",
       "Microsoft.Extensions.Logging.Abstractions.wasm": "sha256-glWux6/5FFNJxVrbRPQ/PhLriEkSd3TllLfjmvZbpKw=",
       "Microsoft.Extensions.Options.wasm": "sha256-5/m+yVFGRuY+N4jQnD+QETKH0AfhAsnVze5dJ5ogIVM=",
+      "Microsoft.Extensions.Options.ConfigurationExtensions.wasm": "sha256-C8ZA1VhhrMRPf8Qqv+OrW9za3ggJkCM9i1d8R/F1ETc=",
       "Microsoft.Extensions.Primitives.wasm": "sha256-pVrYOTfjb2ITls3LKIByW1t8jwOAWFhmkIVDewtJ1GE=",
       "Microsoft.Identity.Client.wasm": "sha256-EaVF5zqGpfwxtkGu2AP/m5Q+WsqRXKvcYic7VRNGE5k=",
       "Microsoft.Identity.Client.Extensions.Msal.wasm": "sha256-pv7S5E6yz8r/hXqu9DZNx/H2NAbzjDAkCzbWufoGD10=",
@@ -69,6 +74,8 @@
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-AQCuGvuEaOGJIRllBm0t1I9jKw+kNMrILxGeDDgzgzY=",
       "Microsoft.SqlServer.Server.wasm": "sha256-Fig+5hq00gGQlXAgSnyFlUlWyhlx9f+yPJb4INt3gNc=",
       "Microsoft.Win32.SystemEvents.wasm": "sha256-1kUoFxSGzlbndQM4zal3G/YBdouUTf444lDjqhuWALU=",
+      "Polly.wasm": "sha256-nqtTJO4ORk0a9aj8aiYClicrbMc0aZVi3iA34o/Gznc=",
+      "Polly.Extensions.Http.wasm": "sha256-bqX9l2dLJ0m0IilNsXvbO14i9Lx0oDeudAGIsS3kEAw=",
       "System.ClientModel.wasm": "sha256-hB3YvRqtJh9HC69ryOu2jplvTqYa8opx1wPk+N/txKs=",
       "System.Configuration.ConfigurationManager.wasm": "sha256-+PLYdcVZv3KxeaVwz0s4UYBHOGGP8xo3I8tCkSLGWjU=",
       "System.Drawing.Common.wasm": "sha256-K4kz7R8w/w1hXO31g3GdLNqPgu4KDENnDuMEnMfDDnc=",
@@ -248,16 +255,18 @@
       "mscorlib.wasm": "sha256-Gz8PyW2/fwihe5ul81OwmRUrU71r+KtbyRw6xlOGD+Q=",
       "netstandard.wasm": "sha256-jMTqIQzoDS810lyhZpMO5eEC36EzntXqSVn+2qwkOMQ=",
       "System.Private.CoreLib.wasm": "sha256-NFj5WE5VLP2LptZIRJCUIc1AMk06FmxpsSILfPISwAw=",
-      "FlexyBox.common.wasm": "sha256-rjN7Ka4f/RI9O125oJFwQZkgSdt5vvFiNA8Jrm+nECI=",
-      "FlexyBox.core.wasm": "sha256-3wpKYt0A49tLNxaGhSVPeMzYNyMpclqecuX7gaWub4s=",
-      "FlexyBox.dal.wasm": "sha256-W1a5rLLURx/2xv6iq1YKg4B+mRi/7lrPdzbJQe4Z/yU=",
-      "FlexyBox.web.wasm": "sha256-rhonvSKQ3+GEfgxParPrMN4HFiBgxTFY5xft/bgU8ps="
+      "FlexyBox.common.wasm": "sha256-/dJYzMXUgqclDpvzMxdWOflZYpBQeqOoD1etMDkWdDA=",
+      "FlexyBox.contract.wasm": "sha256-85KFjmuFUwTars1bsmMQjXFsVSSQZoytFm+IjWXFWBg=",
+      "FlexyBox.core.wasm": "sha256-MXZ8ejgYJVPgMOfIMC8AITXFy1zDpYLkf1L1RL/6++c=",
+      "FlexyBox.dal.wasm": "sha256-lBPUIpj+QcOKPLX9Ra0ow5P3UOHVkKDACTViSCGfNLc=",
+      "FlexyBox.web.wasm": "sha256-dZpJmxMgD7eKUhsMcypEe4IWRgwPEiS6DF8khVAHQqk="
     },
     "pdb": {
-      "FlexyBox.core.pdb": "sha256-U9aZEreMv8C796KhTyHvNuC5554EyKWtixJ+j58Z0PY=",
-      "FlexyBox.common.pdb": "sha256-4xiUR0VrtmjmbXF4uVmM89I4c6Y/9FJC0Ia2Eb7uUQI=",
-      "FlexyBox.dal.pdb": "sha256-4t97H+feksoYCJGojN+j+5nkopdM2lnppS85j9DBbOI=",
-      "FlexyBox.web.pdb": "sha256-10aQa7ft1Ss4NJ+6uHHUHxp5tofCq/PfCxahFBzfWHc="
+      "FlexyBox.contract.pdb": "sha256-3bSrL2YQf24MB+xMvm1duTH6yxqfhGwsZg+OqFi3CZs=",
+      "FlexyBox.core.pdb": "sha256-Zk0g3FcVdZNpw/LE36FlpyEIRzuMQyAEx9TYS63VB+M=",
+      "FlexyBox.common.pdb": "sha256-ilTsNNZ7uBLFSPfSUr6M0Msbo8qmwu5/O6sECYeYUP8=",
+      "FlexyBox.dal.pdb": "sha256-7cQXxEPhKnAw5o/lRZX+/kOdP3HdtjsEy9emOzuB9a0=",
+      "FlexyBox.web.pdb": "sha256-tcU83qXr/Z+K0xJgRYuvGZDqrNNRICaVlI3yMT4cntY="
     }
   },
   "cacheBootResources": true,

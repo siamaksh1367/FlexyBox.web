@@ -1,24 +1,42 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Forms
 
-<h3>Add Category</h3>
-
-<EditForm Model="@createCategoryCommand" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@createCategoryCommand" OnValidSubmit="HandleValidSubmitAsync">
     <DataAnnotationsValidator />
     <ValidationSummary />
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-2">Add Category</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Category Name</label>
+                    <InputText id="categoryName" class="form-control" @bind-Value="@createCategoryCommand.Name" required />
+                    <ValidationMessage For="@(() => createCategoryCommand.Name)" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="categoryDescription" class="form-label">Description</label>
+                    <InputTextArea id="categoryDescription" class="form-control" @bind-Value="@createCategoryCommand.Description" required />
+                    <ValidationMessage For="@(() => createCategoryCommand.Description)" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">  <button type="submit" class="btn btn-primary">Add Category</button></div>
+        </div>
 
-    <div class="mb-3">
-        <label for="categoryName" class="form-label">Category Name</label>
-        <InputText id="categoryName" class="form-control" @bind-Value="@createCategoryCommand.Name" required />
-        <ValidationMessage For="@(() => createCategoryCommand.Name)" />
     </div>
 
-    <div class="mb-3">
-        <label for="categoryDescription" class="form-label">Description</label>
-        <InputTextArea id="categoryDescription" class="form-control" @bind-Value="@createCategoryCommand.Description" required />
-        <ValidationMessage For="@(() => createCategoryCommand.Description)" />
-    </div>
 
-    <button type="submit" class="btn btn-primary">Add Category</button>
+
+
+
 </EditForm>
 
