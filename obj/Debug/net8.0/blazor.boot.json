@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "FlexyBox.web",
   "resources": {
-    "hash": "sha256-GD8YuRq19WP9P6XBN7x9N1ypN8TAH0S2JVaPwmSfiw4=",
+    "hash": "sha256-sja3VnyZxJSpkLIdbmjJJlFn3o0Bsb4m/Llq+vTRbqA=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.p0j6bzqz34.js": "sha256-juC5sA7gHTLXFEhAKgdM2/RavswpwCtDfjYGsAz2FXg="
     },
@@ -255,18 +255,18 @@
       "mscorlib.wasm": "sha256-Gz8PyW2/fwihe5ul81OwmRUrU71r+KtbyRw6xlOGD+Q=",
       "netstandard.wasm": "sha256-jMTqIQzoDS810lyhZpMO5eEC36EzntXqSVn+2qwkOMQ=",
       "System.Private.CoreLib.wasm": "sha256-NFj5WE5VLP2LptZIRJCUIc1AMk06FmxpsSILfPISwAw=",
-      "FlexyBox.common.wasm": "sha256-/dJYzMXUgqclDpvzMxdWOflZYpBQeqOoD1etMDkWdDA=",
-      "FlexyBox.contract.wasm": "sha256-85KFjmuFUwTars1bsmMQjXFsVSSQZoytFm+IjWXFWBg=",
-      "FlexyBox.core.wasm": "sha256-MXZ8ejgYJVPgMOfIMC8AITXFy1zDpYLkf1L1RL/6++c=",
-      "FlexyBox.dal.wasm": "sha256-lBPUIpj+QcOKPLX9Ra0ow5P3UOHVkKDACTViSCGfNLc=",
-      "FlexyBox.web.wasm": "sha256-dZpJmxMgD7eKUhsMcypEe4IWRgwPEiS6DF8khVAHQqk="
+      "FlexyBox.common.wasm": "sha256-lZ3LHQ0qTLrjPhBRah99l2nyUHuK0VzfFOx+odAFoDs=",
+      "FlexyBox.contract.wasm": "sha256-RyCOql6bgYhbAUNi5BEy1HtTCTmoBrE2ScEc0+CJCfM=",
+      "FlexyBox.core.wasm": "sha256-zgkSE9sMm38uBEYr/+ZTheppb7vM/BCCfRb+VNtjDwM=",
+      "FlexyBox.dal.wasm": "sha256-iAYwD7TvjI+pWz/KcZ28lvm8F1bmtTMGJp/4ssYiunI=",
+      "FlexyBox.web.wasm": "sha256-qLeB8l7O/9w8HCMP22ukw+HqjC0e30Zi9wLIV0f2Wi8="
     },
     "pdb": {
-      "FlexyBox.contract.pdb": "sha256-3bSrL2YQf24MB+xMvm1duTH6yxqfhGwsZg+OqFi3CZs=",
-      "FlexyBox.core.pdb": "sha256-Zk0g3FcVdZNpw/LE36FlpyEIRzuMQyAEx9TYS63VB+M=",
-      "FlexyBox.common.pdb": "sha256-ilTsNNZ7uBLFSPfSUr6M0Msbo8qmwu5/O6sECYeYUP8=",
-      "FlexyBox.dal.pdb": "sha256-7cQXxEPhKnAw5o/lRZX+/kOdP3HdtjsEy9emOzuB9a0=",
-      "FlexyBox.web.pdb": "sha256-tcU83qXr/Z+K0xJgRYuvGZDqrNNRICaVlI3yMT4cntY="
+      "FlexyBox.contract.pdb": "sha256-mltZffZC+O+OFTD7BT6Fi2Dbz5bZcSSWC9HbrsfEqE8=",
+      "FlexyBox.core.pdb": "sha256-fzIZMxchL0jw4ahi8rL1VPgY2H1bnjXCYaG8NYUULXw=",
+      "FlexyBox.common.pdb": "sha256-BSnnV7HHcZvo0pXYKMGv3zZY14CmgAlOmWBA6DJkCTc=",
+      "FlexyBox.dal.pdb": "sha256-fNWRs2KlAv6XFUhIUzVewk0DcnVu6bDrIp4Fr3vQeGQ=",
+      "FlexyBox.web.pdb": "sha256-CJl2SDcW/Dvm31p2Aq+STdkGtCfMiHgLOYOeemcjpzM="
     }
   },
   "cacheBootResources": true,

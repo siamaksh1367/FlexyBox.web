@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlexyBox.web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25664193284dde9e61c2d2909169b22e75344837")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f45829169a04cabd9995a07f127bf7cc777d73ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlexyBox.web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlexyBox.web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
