@@ -24,8 +24,13 @@ COPY --from=build /out/wwwroot .
 # Copy custom Nginx config file
 COPY FlexyBox.web/nginx.conf /etc/nginx/nginx.conf
 
-# Expose port 80
+# Copy SSL certificate and private key
+COPY cert.pem /etc/ssl/certs/cert.pem
+COPY key.pem /etc/ssl/private/key.pem
+
+# Expose ports 80 and 443
 EXPOSE 80
+EXPOSE 443
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
