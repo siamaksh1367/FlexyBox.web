@@ -19,7 +19,6 @@ namespace FlexyBox.web.Services
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
-            Console.WriteLine("im executed send async");
             return await base.SendAsync(request, cancellationToken);
         }
     }
