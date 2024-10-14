@@ -1,0 +1,30 @@
+﻿@page "/tagmanager"
+@using FlexyBox.contract.Services
+@using FlexyBox.core.Queries.SearchTag
+
+<div class="position-relative">
+    <input type="text"
+           class="form-control"
+           placeholder="Type to add a tag..."
+           @bind="searchTerm"
+           @oninput="OnInputChange"
+           @onkeydown="HandleKeyDown" />
+
+    @if (_filteredTags.Any())
+    {
+        <div class="dropdown-menu show position-absolute w-100" style="max-height: 150px; overflow-y: auto; z-index: 100;">
+            @foreach (var tag in _filteredTags)
+            {
+                <button type="button" class="dropdown-item" @onclick="() => SelectItem(tag)">@tag.Name</button>
+            }
+        </div>
+    }
+</div>
+
+<div class="mt-2">
+    @foreach (var tag in _selectedTags)
+    {
+        <span class="badge bg-primary me-1">@tag.Name</span>
+    }
+</div>
+
