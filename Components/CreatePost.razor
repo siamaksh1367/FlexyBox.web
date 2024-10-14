@@ -1,5 +1,84 @@
-﻿<h3>CreatePost</h3>
+﻿@using Blazored.TextEditor
+@using Microsoft.AspNetCore.Components.Forms
 
-@code {
+@if (isloading)
+{
+    <Waiting text="Loding editor..."></Waiting>
+}
+else
+{
+    <EditForm Model="@CreatePostCommand" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="mb-2">Create Post</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <InputFile id="image" class="form-control" OnChange="HandleImageUpload" />
+                        <ValidationMessage For="@(() => CreatePostCommand.Image)" />
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(ImagePreviewUrl))
+                {
+                    <div class="col-3">
+                        <img src="@ImagePreviewUrl" alt="Uploaded Image" style="max-width: 100px; max-height: 100px; height: auto; width: auto;" />
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <InputText id="title" class="form-control" @bind-Value="CreatePostCommand.Title" />
+                        <ValidationMessage For="@(() => CreatePostCommand.Title)" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select id="category" class="form-select" @bind="CreatePostCommand.CategoryId">
+                            <option value="">Select a category</option>
+                            @foreach (var category in _categories)
+                            {
+                                <option value=@category.Id>@category.Name</option>
+                            }
+                        </select>
+                        <ValidationMessage For="@(() => CreatePostCommand.CategoryId)" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags</label>
+                        <TagManager OnTagsSelected="UpdateSelectedTags"></TagManager>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="body" class="form-label">Body</label>
+                        <TextEditor Reference=@QuillHtml Text="@CreatePostCommand.Content" GetContent="UpdateContent"></TextEditor>
+                        <ValidationMessage For="@(() => CreatePostCommand.Content)" />
+                    </div>
+                </div>
+            </div>
 
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Create Post</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
 }

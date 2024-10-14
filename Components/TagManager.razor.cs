@@ -1,3 +1,4 @@
+// TagManager.razor.cs
 using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreateTag;
 using FlexyBox.core.Queries.SearchTag;
@@ -12,8 +13,14 @@ namespace FlexyBox.web.Components
         private List<GetAllTagsResponse> _tags = new();
         private List<GetAllTagsResponse> _filteredTags = new();
         private List<GetAllTagsResponse> _selectedTags = new();
+        private const int MaxLengthAttribute = 6;
+
         [Inject]
         public ITagService TagService { get; set; }
+
+        [Parameter]
+        public EventCallback<List<int>> OnTagsSelected { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await LoadItemsAsync();
@@ -42,37 +49,40 @@ namespace FlexyBox.web.Components
 
         private async Task HandleKeyDown(KeyboardEventArgs e)
         {
-            if (e.Key == "Enter")
+            if (e.Key == "Enter" && !string.IsNullOrEmpty(searchTerm))
             {
                 var existingTag = _tags.FirstOrDefault(t => t.Name.Equals(searchTerm, StringComparison.OrdinalIgnoreCase));
                 if (existingTag != null)
                 {
-                    // If tag exists, just add it to the selected list
                     SelectItem(existingTag);
                 }
                 else
                 {
-                    // Add new tag to the database
                     var newTag = new CreateTagCommand(searchTerm);
-                    var addedTag = await TagService.CreateTag(newTag).ExecuteAsync<GetAllTagsResponse>(); // Implement this method in your service
-
-                    // Add the new tag to the selected list
+                    var addedTag = await TagService.CreateTag(newTag).ExecuteAsync<GetAllTagsResponse>();
+                    _tags.Add(addedTag);
                     _selectedTags.Add(addedTag);
                     searchTerm = string.Empty;
-                    _filteredTags.Clear(); // Clear the dropdown
+                    _filteredTags.Clear();
                 }
             }
         }
 
-        private void SelectItem(GetAllTagsResponse item)
+        private async Task SelectItem(GetAllTagsResponse item)
         {
-            // Prevent adding duplicates
-            if (!_selectedTags.Any(t => t.Name.Equals(item.Name, StringComparison.OrdinalIgnoreCase)))
+            if (_selectedTags.Count < MaxLengthAttribute && !_selectedTags.Any(t => t.Name == item.Name))
             {
                 _selectedTags.Add(item);
+                await OnTagsSelected.InvokeAsync(_selectedTags.Select(t => t.Id).ToList());
+                searchTerm = string.Empty;
+                _filteredTags.Clear();
             }
-            searchTerm = string.Empty;
-            _filteredTags.Clear(); // Hide the dropdown
+        }
+
+        private void DeleteSelectedTag(GetAllTagsResponse tag)
+        {
+            _selectedTags.Remove(tag);
+            OnTagsSelected.InvokeAsync(_selectedTags.Select(t => t.Id).ToList());
         }
     }
 }
