@@ -32,10 +32,14 @@ internal class Program
             options.UserOptions.RoleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
         });
 
+        builder.Services.AddTransient<ApiAuthenticationHandler>();
         builder.Services.AddHttpClient("FlexyBox", client =>
         {
             client.BaseAddress = new Uri(builder.Configuration["Api:BaseAddress"]);
-        }).AddPolicyHandler(GetRetryPolicy());
+        }).AddPolicyHandler(GetRetryPolicy())
+        .AddHttpMessageHandler<ApiAuthenticationHandler>();
+
+
         builder.Services.AddScoped(typeof(AccountClaimsPrincipalFactory<RemoteUserAccount>), typeof(CustomAccountFactory));
         builder.Services.AddTransient<ICategoryService, CategoryService>();
         builder.Services.AddScoped<ITokenProvider, TokenProvider>();
