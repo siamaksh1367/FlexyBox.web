@@ -1,0 +1,12 @@
+﻿@using FlexyBox.core.Queries.GetCategories
+<h3>CategoriesTable</h3>
+
+<Table Headers="@_headers"
+    TItem="GetCategoriesResponse"
+    Items="@_categories" 
+    ItemProperties="@_itemProperties" 
+    OnDelete="HanldeDelete"
+    OnEdit="HanldeEdit"
+    ShowActions="true"
+></Table>
+

@@ -17,7 +17,9 @@ namespace FlexyBox.web.Components
         private async Task HandleValidSubmitAsync()
         {
             var accessToken = await tokenProvider.GetAccessTokenAsync();
-            await categoryService.CreateCategory(createCategoryCommand).AddBearerToken(accessToken).ExecuteAsync<CreateCategoryResponse>();
+            await categoryService.CreateCategory(createCategoryCommand)
+                .AddBearerToken(accessToken)
+                .ExecuteAsync<CreateCategoryResponse>();
         }
     }
 }
