@@ -18,8 +18,8 @@ namespace FlexyBox.web.Components
         {
             var accessToken = await tokenProvider.GetAccessTokenAsync();
             await categoryService.CreateCategory(createCategoryCommand)
-                .AddBearerToken(accessToken)
                 .ExecuteAsync<CreateCategoryResponse>();
+            createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
         }
     }
 }

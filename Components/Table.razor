@@ -1,36 +1,96 @@
-﻿@typeparam TItem
-
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            @foreach (var header in Headers)
-            {
-                <th>@header</th>
-            }
-            @if (ShowActions)
-            {
-                <th>Actions</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Items)
-        {
+﻿@using Microsoft.AspNetCore.Components.Forms
+@typeparam TDataItem
+@typeparam TEditItem
+@if (Items == null)
+{
+    <Waiting text="Fetching categories" />
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                @foreach (var property in ItemProperties)
+                @foreach (var header in Headers)
                 {
-                    <td>@property(item)</td>
+                    <th>@header</th>
                 }
                 @if (ShowActions)
                 {
-                    <td>
-                        <button class="btn btn-primary btn-sm" @onclick="() => OnEditClicked(item)">Edit</button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => OnDeleteClicked(item)">Delete</button>
-                    </td>
+                    <AuthorizeView Roles="admin">
+                        <Authorized>
+                            <th>Actions</th>
+                        </Authorized>
+                    </AuthorizeView>
+
                 }
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Items)
+            {
+                <tr>
+                    @if (item.EditMode)
+                    {
+                        @foreach (var property in ItemProperties)
+                        {
+                            if (property(item.Item).Editable)
+                            {
+                                if (property(item.Item).Type == "text")
+                                {
+                                    var y = property(item.Item);
+                                    var editProperty = _editProperties.FirstOrDefault(x => x.Name == y.MappingProperty);
+                                    <AuthorizeView Roles="admin">
+                                        <Authorized>
+                                            <td>
+                                                <input class="form-control"
+                                                       value="@((string)editProperty.GetValue(EditItem))"
+                                                       @oninput="@((e) => SetStringPropertyValue(editProperty , e.Value.ToString()))" />
+
+                                            </td>
+                                        </Authorized>
+                                    </AuthorizeView>
+                                    
+                                }
+                            }
+                            else
+                            {
+                                <td>@property(item.Item).Value</td>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var property in ItemProperties)
+                        {
+                            <td>@property(item.Item).Value.ToString()</td>
+                        }
+                    }
+                    @if (ShowActions)
+                    {
+                        <AuthorizeView Roles="admin">
+                            <Authorized>
+                                <td>
+                                    @if (item.EditMode)
+                                    {
+                                        <button class="btn btn-primary btn-sm" @onclick="() => OnCancelClicked()">Cancel</button>
+                                        <button class="btn btn-danger btn-sm" @onclick="() => OnUpdateClicked(item)">update</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-primary btn-sm" @onclick="() => OnEditModeClicked(item)">Edit</button>
+                                    }
+                                    <button class="btn btn-danger btn-sm" @onclick="() => OnDeleteClicked(item)">Delete</button>
+                                </td>
+                            </Authorized>
+                        </AuthorizeView>
+                        
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
 
 

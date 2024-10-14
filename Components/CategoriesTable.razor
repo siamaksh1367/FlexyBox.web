@@ -1,12 +1,32 @@
-﻿@using FlexyBox.core.Queries.GetCategories
-<h3>CategoriesTable</h3>
+﻿@using FlexyBox.core.Commands.UpdateCategory
+@using FlexyBox.core.Queries.GetCategories
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h3>All categories</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @if (isloading)
+            {
+                <Waiting text="fetching categories..."></Waiting>
+            }
+            else
+            {
+                <Table Headers="@_headers"
+                       EditItem="@_updateCategoryCommand"
+                       TDataItem="GetCategoriesResponse"
+                       TEditItem="UpdateCategoryCommand"
+                       Items="@_categories.Select(x=>new Table<GetCategoriesResponse,UpdateCategoryCommand>.TableDataWrapper<GetCategoriesResponse>(){Item=x,EditMode=false}).ToList()"
+                       ItemProperties="@_itemProperties"
+                       OnDelete="@((category) => HandleDelete(new core.Commands.DeleteCategory.DeleteCategoryCommand(category.Id)))"
+                       OnUpdate="@(()=> HandleEdit(_updateCategoryCommand))"
+                       ShowActions="true"></Table>
+            }
+        </div>
+    </div>
+</div>
 
-<Table Headers="@_headers"
-    TItem="GetCategoriesResponse"
-    Items="@_categories" 
-    ItemProperties="@_itemProperties" 
-    OnDelete="HanldeDelete"
-    OnEdit="HanldeEdit"
-    ShowActions="true"
-></Table>
+
 
