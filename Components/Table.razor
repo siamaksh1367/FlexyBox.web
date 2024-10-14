@@ -69,17 +69,17 @@ else
                     {
                         <AuthorizeView Roles="admin">
                             <Authorized>
-                                <td>
+                                <td class="text-end">
                                     @if (item.EditMode)
                                     {
-                                        <button class="btn btn-primary btn-sm" @onclick="() => OnCancelClicked()">Cancel</button>
-                                        <button class="btn btn-danger btn-sm" @onclick="() => OnUpdateClicked(item)">update</button>
+                                        <button class="btn btn-primary btn-sm ms-2" @onclick="() => OnCancelClicked()">Cancel</button>
+                                        <button class="btn btn-danger btn-sm ms-2" @onclick="() => OnUpdateClicked(item)">update</button>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-primary btn-sm" @onclick="() => OnEditModeClicked(item)">Edit</button>
+                                        <button class="btn btn-primary btn-sm ms-2" @onclick="() => OnEditModeClicked(item)">Edit</button>
                                     }
-                                    <button class="btn btn-danger btn-sm" @onclick="() => OnDeleteClicked(item)">Delete</button>
+                                    <button class="btn btn-danger btn-sm ms-2" @onclick="() => OnDeleteClicked(item)">Delete</button>
                                 </td>
                             </Authorized>
                         </AuthorizeView>
