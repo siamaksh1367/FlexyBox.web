@@ -14,11 +14,19 @@ namespace FlexyBox.web.Components
 
         private CreateCategoryCommand createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
 
+        [Parameter]
+        public EventCallback OnCategoryAdded { get; set; }
+
         private async Task HandleValidSubmitAsync()
         {
             var accessToken = await tokenProvider.GetAccessTokenAsync();
             await categoryService.CreateCategory(createCategoryCommand)
                 .ExecuteAsync<CreateCategoryResponse>();
+
+            // Notify the parent component that a category was added
+            await OnCategoryAdded.InvokeAsync(null);
+
+            // Reset the form
             createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
         }
     }

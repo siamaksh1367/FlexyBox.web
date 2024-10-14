@@ -3,5 +3,18 @@
 @using FlexyBox.web.Components
 @layout MainLayout
 
-<AddCategory></AddCategory>
-<CategoriesTable></CategoriesTable>
+<AddCategory OnCategoryAdded="RefreshCategories" />
+
+<CategoriesTable @ref="_categoriesTable" />
+
+@code {
+    private CategoriesTable _categoriesTable;
+
+    private async Task RefreshCategories()
+    {
+        if (_categoriesTable != null)
+        {
+            await _categoriesTable.getCategories();
+        }
+    }
+}

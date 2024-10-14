@@ -37,10 +37,11 @@ namespace FlexyBox.web.Components
             return base.OnInitializedAsync();
         }
 
-        private async Task getCategories()
+        public async Task getCategories()
         {
             _categories = (await categoryService.GetAllCategories()
                 .ExecuteAsync<IEnumerable<GetCategoriesResponse>>()).ToList();
+            StateHasChanged();
             isloading = false;
         }
 
