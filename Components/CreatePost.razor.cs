@@ -9,20 +9,25 @@ namespace FlexyBox.web.Components
 {
     public partial class CreatePost
     {
-        private CreatePostCommand CreatePostCommand;
-        private List<GetCategoriesResponse> _categories;
-        private BlazoredTextEditor QuillHtml;
-        private string ImagePreviewUrl { get; set; } = string.Empty;
-        private List<int> selectedTags = new();
         [Inject]
         public ICategoryService categoryService { get; set; }
+        [Inject]
+        public IPostService postService { get; set; }
+
+        private CreatePostCommand CreatePostCommand;
+        private List<GetCategoriesResponse> _categories;
+        private BlazoredTextEditor BlazoredTextEditor;
+        private string ImagePreviewUrl { get; set; } = string.Empty;
+        private List<int> selectedTags = new();
         private bool isloading = false;
+
         protected override async Task OnInitializedAsync()
         {
             isloading = true;
             CreatePostCommand = new CreatePostCommand(string.Empty, string.Empty, new List<int>(), 0, null);
             _categories = await categoryService.GetAllCategories().ExecuteAsync<List<GetCategoriesResponse>>();
         }
+
         protected override Task OnAfterRenderAsync(bool firstRender)
         {
             isloading = false;
@@ -44,23 +49,27 @@ namespace FlexyBox.web.Components
             var file = e.GetMultipleFiles(1).FirstOrDefault();
             if (file != null)
             {
-                // Set the uploaded file to CreatePostCommand
-                CreatePostCommand.Image = file;
-
-                // Create a FileReader to read the file as a base64 string
                 using var stream = file.OpenReadStream(maxAllowedSize: 2 * 1024 * 1024); // Limit size to 2MB
-                var buffer = new byte[file.Size];
-                await stream.ReadAsync(buffer);
+                using var memoryStream = new MemoryStream();
+                await stream.CopyToAsync(memoryStream);
 
-                // Convert to base64 string for preview
-                ImagePreviewUrl = $"data:{file.ContentType};base64,{Convert.ToBase64String(buffer)}";
+                // Store the image data in byte array
+                CreatePostCommand.Image = memoryStream.ToArray();
+
+                // Generate image preview URL
+                ImagePreviewUrl = $"data:{file.ContentType};base64,{Convert.ToBase64String(CreatePostCommand.Image)}";
             }
         }
 
         private async Task HandleValidSubmit()
         {
-            // Continue with creating the post, using CreatePostCommand
-            // Example: await _postService.CreatePost(CreatePostCommand);
+            var text = await BlazoredTextEditor.GetHTML();
+            CreatePostCommand.Content = text;
+
+            if (!string.IsNullOrEmpty(CreatePostCommand.Content))
+            {
+                var createdPost = await postService.CreatePost(CreatePostCommand).ExecuteAsync<CreatePostResponse>();
+            }
         }
     }
 }

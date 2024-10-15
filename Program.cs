@@ -43,9 +43,10 @@ internal class Program
         builder.Services.AddScoped(typeof(AccountClaimsPrincipalFactory<RemoteUserAccount>), typeof(CustomAccountFactory));
         builder.Services.AddTransient<ICategoryService, CategoryService>();
         builder.Services.AddTransient<ITagService, TagService>();
+        builder.Services.AddTransient<IPostService, PostService>();
 
         builder.Services.AddScoped<ITokenProvider, TokenProvider>();
-        builder.Services.AddScoped<HttpRequestBuilder>();
+        builder.Services.AddTransient<HttpRequestBuilder>();
         await builder.Build().RunAsync();
     }
 

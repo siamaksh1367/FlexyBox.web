@@ -1,16 +1,15 @@
-﻿@using Blazored.TextEditor
+﻿@page "/create-post"
+@using Blazored.TextEditor
 @using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
 
 @if (isloading)
 {
-    <Waiting text="Loding editor..."></Waiting>
+    <Waiting text="Loading editor..."></Waiting>
 }
 else
 {
-    <EditForm Model="@CreatePostCommand" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <div class="container  mt-5">
+    <div class="container mt-5">
             <div class="row">
                 <div class="col-12">
                     <h3 class="mb-2">Create Post</h3>
@@ -21,7 +20,6 @@ else
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
                         <InputFile id="image" class="form-control" OnChange="HandleImageUpload" />
-                        <ValidationMessage For="@(() => CreatePostCommand.Image)" />
                     </div>
                 </div>
                 @if (!string.IsNullOrEmpty(ImagePreviewUrl))
@@ -36,7 +34,6 @@ else
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <InputText id="title" class="form-control" @bind-Value="CreatePostCommand.Title" />
-                        <ValidationMessage For="@(() => CreatePostCommand.Title)" />
                     </div>
                 </div>
             </div>
@@ -48,10 +45,9 @@ else
                             <option value="">Select a category</option>
                             @foreach (var category in _categories)
                             {
-                                <option value=@category.Id>@category.Name</option>
+                                <option value="@category.Id">@category.Name</option>
                             }
                         </select>
-                        <ValidationMessage For="@(() => CreatePostCommand.CategoryId)" />
                     </div>
                 </div>
             </div>
@@ -67,18 +63,56 @@ else
                 <div class="col">
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <TextEditor Reference=@QuillHtml Text="@CreatePostCommand.Content" GetContent="UpdateContent"></TextEditor>
-                        <ValidationMessage For="@(() => CreatePostCommand.Content)" />
+                        <BlazoredTextEditor @ref="@BlazoredTextEditor" Placeholder="Enter non HTML format like centering...">
+                            <ToolbarContent>
+                                <span class="ql-formats">
+                                    <select class="ql-font">
+                                        <option selected=""></option>
+                                        <option value="serif"></option>
+                                        <option value="monospace"></option>
+                                    </select>
+                                    <select class="ql-size">
+                                        <option value="small"></option>
+                                        <option selected=""></option>
+                                        <option value="large"></option>
+                                        <option value="huge"></option>
+                                    </select>
+                                </span>
+                                <span class="ql-formats">
+                                    <button class="ql-bold"></button>
+                                    <button class="ql-italic"></button>
+                                    <button class="ql-underline"></button>
+                                    <button class="ql-strike"></button>
+                                </span>
+                                <span class="ql-formats">
+                                    <select class="ql-color"></select>
+                                    <select class="ql-background"></select>
+                                </span>
+                                <span class="ql-formats">
+                                    <button class="ql-list" value="ordered"></button>
+                                    <button class="ql-list" value="bullet"></button>
+                                    <button class="ql-indent" value="-1"></button>
+                                    <button class="ql-indent" value="+1"></button>
+                                    <select class="ql-align">
+                                        <option selected=""></option>
+                                        <option value="center"></option>
+                                        <option value="right"></option>
+                                        <option value="justify"></option>
+                                    </select>
+                                </span>
+                                <span class="ql-formats">
+                                    <button class="ql-link"></button>
+                                </span>
+                            </ToolbarContent>
+                        </BlazoredTextEditor>
                     </div>
                 </div>
             </div>
-
-
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Create Post</button>
+                    <button type="button" @onclick="HandleValidSubmit" class="btn btn-primary">Create Post</button>
                 </div>
             </div>
-        </div>
-    </EditForm>
+    </div>
 }
+

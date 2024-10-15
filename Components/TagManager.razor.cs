@@ -51,15 +51,24 @@ namespace FlexyBox.web.Components
         {
             if (e.Key == "Enter" && !string.IsNullOrEmpty(searchTerm))
             {
+                if (!(_selectedTags.Count < MaxLengthAttribute))
+                {
+                    throw new Exception("maximum tags are added");
+                }
                 var existingTag = _tags.FirstOrDefault(t => t.Name.Equals(searchTerm, StringComparison.OrdinalIgnoreCase));
                 if (existingTag != null)
                 {
+                    Console.WriteLine(string.Join(",", _selectedTags.Select(x => x.Id.ToString() + ":" + x.Name)));
+                    Console.WriteLine(existingTag.Id.ToString() + existingTag.Name.ToString());
+
                     SelectItem(existingTag);
                 }
                 else
                 {
                     var newTag = new CreateTagCommand(searchTerm);
                     var addedTag = await TagService.CreateTag(newTag).ExecuteAsync<GetAllTagsResponse>();
+                    Console.WriteLine(string.Join(",", _selectedTags.Select(x => x.Id.ToString() + ":" + x.Name)));
+                    Console.WriteLine(addedTag.Id.ToString() + addedTag.Name.ToString());
                     _tags.Add(addedTag);
                     _selectedTags.Add(addedTag);
                     searchTerm = string.Empty;
@@ -72,6 +81,8 @@ namespace FlexyBox.web.Components
         {
             if (_selectedTags.Count < MaxLengthAttribute && !_selectedTags.Any(t => t.Name == item.Name))
             {
+                Console.WriteLine(string.Join(",", _selectedTags.Select(x => x.Id.ToString() + ":" + x.Name)));
+                Console.WriteLine(item.Id.ToString() + item.Name.ToString());
                 _selectedTags.Add(item);
                 await OnTagsSelected.InvokeAsync(_selectedTags.Select(t => t.Id).ToList());
                 searchTerm = string.Empty;
