@@ -1,6 +1,6 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Forms
-<EditForm Model="@createCategoryCommand" OnValidSubmit="HandleValidSubmitAsync">
+<EditForm Model="@_createCategoryCommand" OnValidSubmit="AddCategory_Handling">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="container mt-5">
@@ -15,8 +15,8 @@
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="categoryName" class="form-label">Category Name</label>
-                            <InputText id="categoryName" class="form-control" @bind-Value="@createCategoryCommand.Name" required />
-                            <ValidationMessage For="@(() => createCategoryCommand.Name)" />
+                            <InputText id="categoryName" class="form-control" @bind-Value="@_createCategoryCommand.Name" required />
+                            <ValidationMessage For="@(() => _createCategoryCommand.Name)" />
                         </div>
                     </div>
                 </div>
@@ -24,8 +24,8 @@
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="categoryDescription" class="form-label">Description</label>
-                            <InputTextArea id="categoryDescription" class="form-control" @bind-Value="@createCategoryCommand.Description" required />
-                            <ValidationMessage For="@(() => createCategoryCommand.Description)" />
+                            <InputTextArea id="categoryDescription" class="form-control" @bind-Value="@_createCategoryCommand.Description" required />
+                            <ValidationMessage For="@(() => _createCategoryCommand.Description)" />
                         </div>
                     </div>
                 </div>

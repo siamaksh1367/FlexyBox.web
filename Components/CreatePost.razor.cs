@@ -3,7 +3,7 @@ using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreatePost;
 using FlexyBox.core.Commands.CreateTag;
 using FlexyBox.core.Queries.GetCategories;
-using FlexyBox.core.Queries.SearchTag;
+using FlexyBox.core.Queries.GetTags;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -12,19 +12,19 @@ namespace FlexyBox.web.Components
     public partial class CreatePost
     {
         [Inject]
-        public ICategoryService _categoryService { get; set; }
+        public ICategoryService CategoryService { get; set; }
 
         [Inject]
-        public ITagService _tagService { get; set; }
+        public ITagService TagService { get; set; }
         [Inject]
-        public IPostService _postService { get; set; }
+        public IPostService PostService { get; set; }
 
-        private BlazoredTextEditor BlazoredTextEditor;
         private CreatePostCommand _createPostCommand;
-        private List<GetCategoriesResponse> _categories;
+        private List<GetCategoryResponse> _categories;
         private List<GetTagsResponse> _tags;
 
         private string _imagePreviewUrl { get; set; } = string.Empty;
+        private BlazoredTextEditor _blazoredTextEditor;
         private List<GetTagsResponse> _selectedTags = new();
         private bool _isloading = false;
 
@@ -32,8 +32,8 @@ namespace FlexyBox.web.Components
         {
             _isloading = true;
             _createPostCommand = new CreatePostCommand(string.Empty, string.Empty, new List<int>(), 0, null);
-            _categories = await _categoryService.GetAllCategories().ExecuteAsync<List<GetCategoriesResponse>>();
-            _tags = await _tagService.GetAllTags().ExecuteAsync<List<GetTagsResponse>>();
+            _categories = await CategoryService.GetAllCategories().ExecuteAsync<List<GetCategoryResponse>>();
+            _tags = await TagService.GetAllTags().ExecuteAsync<List<GetTagsResponse>>();
         }
 
         protected override Task OnAfterRenderAsync(bool firstRender)
@@ -44,7 +44,7 @@ namespace FlexyBox.web.Components
 
         private async Task CreatingTagsSelected_Handling(CreateTagCommand createTagCommand)
         {
-            var createdTag = await _tagService.CreateTag(createTagCommand).ExecuteAsync<GetTagsResponse>();
+            var createdTag = await TagService.CreateTag(createTagCommand).ExecuteAsync<GetTagsResponse>();
             if (!_selectedTags.Contains(createdTag))
                 _selectedTags.Add(createdTag);
         }
@@ -74,12 +74,12 @@ namespace FlexyBox.web.Components
 
         private async Task HandleValidSubmit()
         {
-            var text = await BlazoredTextEditor.GetHTML();
+            var text = await _blazoredTextEditor.GetHTML();
             _createPostCommand.Content = text;
             _createPostCommand.Tags.AddRange(_selectedTags.Select(x => x.Id));
             if (!string.IsNullOrEmpty(_createPostCommand.Content))
             {
-                var createdPost = await _postService.CreatePost(_createPostCommand).ExecuteAsync<CreatePostResponse>();
+                var createdPost = await PostService.CreatePost(_createPostCommand).ExecuteAsync<CreatePostResponse>();
             }
         }
     }

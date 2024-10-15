@@ -1,33 +1,33 @@
-using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreateCategory;
-using FlexyBox.web.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace FlexyBox.web.Components
 {
     public partial class AddCategory
     {
-        [Inject]
-        public ICategoryService categoryService { get; set; }
-        [Inject]
-        public ITokenProvider tokenProvider { get; set; }
-
-        private CreateCategoryCommand createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
-
         [Parameter]
-        public EventCallback OnCategoryAdded { get; set; }
+        public EventCallback<CreateCategoryCommand> AddCategory_Handler { get; set; }
 
-        private async Task HandleValidSubmitAsync()
+        [CascadingParameter]
+        private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+        private CreateCategoryCommand _createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
+
+        private async Task AddCategory_Handling()
         {
-            var accessToken = await tokenProvider.GetAccessTokenAsync();
-            await categoryService.CreateCategory(createCategoryCommand)
-                .ExecuteAsync<CreateCategoryResponse>();
+            var authenticationState = await authenticationStateTask;
 
-            // Notify the parent component that a category was added
-            await OnCategoryAdded.InvokeAsync(null);
-
-            // Reset the form
-            createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
+            if (authenticationState.User.IsInRole("admin"))
+            {
+                await AddCategory_Handler.InvokeAsync(_createCategoryCommand);
+                _createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
+                StateHasChanged();
+            }
+            else
+            {
+                throw new UnauthorizedAccessException();
+            }
         }
     }
 }

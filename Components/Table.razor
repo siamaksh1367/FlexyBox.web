@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
-@typeparam TDataItem
-@typeparam TEditItem
-@if (Items == null)
+@typeparam RowDataType
+@typeparam RowEditType
+@if (Rows == null || Rows.Count==0)
 {
     <Waiting text="Fetching categories" />
 }
@@ -26,43 +26,39 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Items)
+            @foreach (var rowWithEditFlag in _rowsWithEditFlag)
             {
                 <tr>
-                    @if (item.EditMode)
+                    @if (rowWithEditFlag.EditMode)
                     {
-                        @foreach (var property in ItemProperties)
+                        @foreach (var column in RowDataColumns)
                         {
-                            if (property(item.Item).Editable)
+                            var columningResult = column(rowWithEditFlag.Data);
+                            if (columningResult.Editable && columningResult.Type == "text")
                             {
-                                if (property(item.Item).Type == "text")
-                                {
-                                    var y = property(item.Item);
-                                    var editProperty = _editProperties.FirstOrDefault(x => x.Name == y.MappingProperty);
-                                    <AuthorizeView Roles="admin">
-                                        <Authorized>
-                                            <td>
-                                                <input class="form-control"
-                                                       value="@((string)editProperty.GetValue(EditItem))"
-                                                       @oninput="@((e) => SetStringPropertyValue(editProperty , e.Value.ToString()))" />
+                                var editProperty = _rowEditTypeColumns.FirstOrDefault(x => x.Name == columningResult.EditPropertyName);
+                                <AuthorizeView Roles="admin">
+                                    <Authorized>
+                                        <td>
+                                            <input class="form-control"
+                                                   value="@((string)editProperty.GetValue(_rowEditTypeColumns))"
+                                                   @oninput="@((e) => SetStringPropertyValue(editProperty , e.Value.ToString()))" />
 
-                                            </td>
-                                        </Authorized>
-                                    </AuthorizeView>
-                                    
-                                }
+                                        </td>
+                                    </Authorized>
+                                </AuthorizeView>
                             }
                             else
                             {
-                                <td>@property(item.Item).Value</td>
+                                <td>@columningResult.Value</td>
                             }
                         }
                     }
                     else
                     {
-                        @foreach (var property in ItemProperties)
+                        @foreach (var column in RowDataColumns)
                         {
-                            <td>@property(item.Item).Value.ToString()</td>
+                            <td>@column(rowWithEditFlag.Data).Value.ToString()</td>
                         }
                     }
                     @if (ShowActions)
@@ -70,20 +66,20 @@ else
                         <AuthorizeView Roles="admin">
                             <Authorized>
                                 <td class="text-end">
-                                    @if (item.EditMode)
+                                    @if (rowWithEditFlag.EditMode)
                                     {
-                                        <button class="btn btn-primary btn-sm ms-2" @onclick="() => OnCancelClicked()">Cancel</button>
-                                        <button class="btn btn-danger btn-sm ms-2" @onclick="() => OnUpdateClicked(item)">update</button>
+                                        <button class="btn btn-primary btn-sm ms-2" @onclick="() => Cancel_Editing()">Cancel</button>
+                                        <button class="btn btn-danger btn-sm ms-2" @onclick="() => Update_Handling(RowEditItem)">update</button>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-primary btn-sm ms-2" @onclick="() => OnEditModeClicked(item)">Edit</button>
+                                        <button class="btn btn-primary btn-sm ms-2" @onclick="() => Start_Editing(rowWithEditFlag)">Edit</button>
                                     }
-                                    <button class="btn btn-danger btn-sm ms-2" @onclick="() => OnDeleteClicked(item)">Delete</button>
+                                    <button class="btn btn-danger btn-sm ms-2" @onclick="() => Delete_Handling(rowWithEditFlag.Data)">Delete</button>
                                 </td>
                             </Authorized>
                         </AuthorizeView>
-                        
+
                     }
                 </tr>
             }

@@ -1,110 +1,90 @@
+using FlexyBox.web.Components.Models.Table;
 using Microsoft.AspNetCore.Components;
 using System.Reflection;
 
 namespace FlexyBox.web.Components
 {
-    public partial class Table<TDataItem, TEditItem>
+    public partial class Table<RowDataType, RowEditType>
     {
-        private IEnumerable<PropertyInfo> _editProperties;
-
         [Parameter]
-        public List<TableDataWrapper<TDataItem>> Items { get; set; } = new List<TableDataWrapper<TDataItem>>();
+        public List<RowDataType> Rows { get; set; }
         [Parameter]
         public List<string> Headers { get; set; } = new List<string>();
         [Parameter]
-        public List<Func<TDataItem, PropertyObject>> ItemProperties { get; set; } = new List<Func<TDataItem, PropertyObject>>();
+        public List<Func<RowDataType, Column>> RowDataColumns { get; set; }
         [Parameter]
         public bool ShowActions { get; set; } = true;
 
+        [Parameter]
+        public EventCallback<RowEditType> Update_Handler { get; set; }
+        [Parameter]
+        public EventCallback<RowDataType> Delete_Handler { get; set; }
+        [Parameter]
+        public RowEditType RowEditItem { get; set; }
 
-        [Parameter]
-        public EventCallback<TDataItem> OnUpdate { get; set; }
-        [Parameter]
-        public EventCallback<TDataItem> OnDelete { get; set; }
-        [Parameter]
-        public TEditItem EditItem { get; set; }
+        private IEnumerable<PropertyInfo> _rowEditTypeColumns;
+        private IEnumerable<Row<RowDataType>> _rowsWithEditFlag;
 
-        private void OnEditModeClicked(TableDataWrapper<TDataItem> editingItem)
+        protected override void OnInitialized()
         {
-            foreach (var item in Items)
-                item.EditMode = false;
-            editingItem.EditMode = true;
-            foreach (var property in _editProperties)
+            _rowEditTypeColumns = typeof(RowEditType).GetProperties()
+                                 .Where(p => p.CanRead && p.CanWrite);
+            _rowsWithEditFlag = Rows.Select(x => new Row<RowDataType>()
             {
-                foreach (var item in ItemProperties)
+                Data = x,
+                EditMode = false
+            });
+
+            base.OnInitialized();
+        }
+        private void Start_Editing(Row<RowDataType> editingRow)
+        {
+            foreach (var row in _rowsWithEditFlag)
+                row.EditMode = false;
+            editingRow.EditMode = true;
+
+
+            foreach (var rowEditTypeColumn in _rowEditTypeColumns)
+            {
+                foreach (var RowDataColumn in RowDataColumns)
                 {
-                    var PropertyObject = item.Invoke(editingItem.Item);
-                    if (property.Name == PropertyObject.MappingProperty)
+                    var column = RowDataColumn.Invoke(editingRow.Data);
+                    if (rowEditTypeColumn.Name == column.EditPropertyName)
                     {
-                        Console.WriteLine(property.Name);
-                        SetStringPropertyValue(property, PropertyObject.Value);
+                        SetStringPropertyValue(rowEditTypeColumn, column.Value);
                     }
                 }
             }
             StateHasChanged();
         }
 
-        private void OnCancelClicked()
+        private void Cancel_Editing()
         {
-            foreach (var item in Items)
-                item.EditMode = false;
+            foreach (var row in _rowsWithEditFlag)
+                row.EditMode = false;
         }
 
-        private void OnDeleteClicked(TableDataWrapper<TDataItem> item)
+        private async Task Delete_Handling(RowDataType deleteItem)
         {
-            OnDelete.InvokeAsync(item.Item);
-        }
-        private void OnUpdateClicked(TableDataWrapper<TDataItem> item)
-        {
-            OnUpdate.InvokeAsync(item.Item);
+            await Delete_Handler.InvokeAsync(deleteItem);
         }
 
-
-        [Parameter]
-        public EventCallback<TEditItem> OnValidSubmit { get; set; }
-
-        protected override void OnInitialized()
+        private async Task Update_Handling(RowEditType editItem)
         {
-            _editProperties = typeof(TEditItem).GetProperties()
-                                 .Where(p => p.CanRead && p.CanWrite);
-            base.OnInitialized();
+            await Update_Handler.InvokeAsync(editItem);
         }
-
-        private string GetStringPropertyValue(PropertyInfo property)
-        {
-            if (EditItem == null)
-            {
-                Console.WriteLine("thi is null");
-            }
-            return (string)property.GetValue(EditItem) ?? string.Empty;
-        }
-
 
         private void SetStringPropertyValue(PropertyInfo property, string value)
         {
             if (property.PropertyType == typeof(string))
             {
-                property.SetValue(EditItem, value);
+                property.SetValue(RowEditItem, value);
             }
             else if (property.PropertyType == typeof(int) && int.TryParse(value, out int intValue))
             {
-                property.SetValue(EditItem, intValue);
+                property.SetValue(RowEditItem, intValue);
             }
 
-        }
-
-        public class TableDataWrapper<TDataItem>
-        {
-            public TDataItem Item { get; set; }
-            public bool EditMode { get; set; }
-        }
-
-        public class PropertyObject
-        {
-            public string Value { get; set; }
-            public string MappingProperty { get; set; }
-            public bool Editable { get; set; }
-            public string Type { get; set; }
         }
     }
 }

@@ -1,5 +1,5 @@
 using FlexyBox.core.Commands.CreateTag;
-using FlexyBox.core.Queries.SearchTag;
+using FlexyBox.core.Queries.GetTags;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -25,7 +25,7 @@ namespace FlexyBox.web.Components
         private const int MaxLengthAttribute = 6;
         private List<GetTagsResponse> _filteredTags = new();
 
-        private void OnInputChange(ChangeEventArgs e)
+        private void Chnage_Handling(ChangeEventArgs e)
         {
             _searchTerm = e.Value?.ToString() ?? string.Empty;
 
@@ -41,7 +41,7 @@ namespace FlexyBox.web.Components
             }
         }
 
-        private async Task HandleKeyDown(KeyboardEventArgs e)
+        private async Task KeyDown_Handling(KeyboardEventArgs e)
         {
             if (e.Key == "Enter" && !string.IsNullOrEmpty(_searchTerm))
             {

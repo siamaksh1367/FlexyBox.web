@@ -15,13 +15,13 @@
             else
             {
                 <Table Headers="@_headers"
-                       EditItem="@_updateCategoryCommand"
-                       TDataItem="GetCategoriesResponse"
-                       TEditItem="UpdateCategoryCommand"
-                       Items="@_categories.Select(x=>new Table<GetCategoriesResponse,UpdateCategoryCommand>.TableDataWrapper<GetCategoriesResponse>(){Item=x,EditMode=false}).ToList()"
-                       ItemProperties="@_itemProperties"
-                       OnDelete="@((category) => HandleDelete(new core.Commands.DeleteCategory.DeleteCategoryCommand(category.Id)))"
-                       OnUpdate="@(()=> HandleEdit(_updateCategoryCommand))"
+                       RowEditItem="@_updateCategoryCommand"
+                       RowDataType="GetCategoryResponse"
+                       RowEditType="UpdateCategoryCommand"
+                       Rows="@Categories"
+                       RowDataColumns="@_rowDataColumns"
+                       Delete_Handler="(x)=>DeleteCategory_Handling(x)"
+                       Update_Handler="(x)=>UpdateCategory_Handling(x)"
                        ShowActions="true"></Table>
             }
         </div>
