@@ -19,10 +19,14 @@ namespace FlexyBox.web.Components
 
         [Inject]
         public ITokenProvider tokenProvider { get; set; }
+        [CascadingParameter]
         private Task<AuthenticationState> authenticationStateTask { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            Console.WriteLine("gcas");
             _categories = await CategoryService.GetAllCategories().ExecuteAsync<List<GetCategoryResponse>>();
+            Console.WriteLine("gcad");
+
             await base.OnInitializedAsync();
         }
 

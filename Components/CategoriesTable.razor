@@ -19,10 +19,10 @@
                        RowDataType="GetCategoryResponse"
                        RowEditType="UpdateCategoryCommand"
                        Rows="@Categories"
+                       ShowActions="true"
                        RowDataColumns="@_rowDataColumns"
                        Delete_Handler="(x)=>DeleteCategory_Handling(x)"
-                       Update_Handler="(x)=>UpdateCategory_Handling(x)"
-                       ShowActions="true"></Table>
+                       Update_Handler="(x)=>UpdateCategory_Handling(x)"></Table>
             }
         </div>
     </div>

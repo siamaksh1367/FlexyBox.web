@@ -19,14 +19,14 @@ namespace FlexyBox.web.Components
 
 
         private List<string> _headers = new List<string> { "Id", "Name", "Description" };
+        private UpdateCategoryCommand _updateCategoryCommand = new UpdateCategoryCommand(0, string.Empty, string.Empty);
+        private bool isloading = false;
         private List<Func<GetCategoryResponse, Column>> _rowDataColumns = new List<Func<GetCategoryResponse, Column>>
         {
             x=>new Column(){EditPropertyName="Id",Value= x.Id.ToString(),Editable=false },
             x=>new Column(){EditPropertyName="Name", Value= x.Name,Editable=true,Type="text"},
             x=>new Column(){EditPropertyName="Description",Value= x.Description,Editable=true,Type="text"}
         };
-        private UpdateCategoryCommand _updateCategoryCommand = new UpdateCategoryCommand(0, string.Empty, string.Empty);
-        private bool isloading = false;
 
         protected override async Task<Task> OnInitializedAsync()
         {

@@ -31,17 +31,19 @@ else
                 <tr>
                     @if (rowWithEditFlag.EditMode)
                     {
+                        Console.WriteLine("one row in edit mode");
                         @foreach (var column in RowDataColumns)
                         {
                             var columningResult = column(rowWithEditFlag.Data);
-                            if (columningResult.Editable && columningResult.Type == "text")
+                            var editProperty = _rowEditTypeColumns.FirstOrDefault(x => x.Name == columningResult.EditPropertyName);
+                            if (columningResult.Editable && columningResult.Type.ToLower() == "text")
                             {
-                                var editProperty = _rowEditTypeColumns.FirstOrDefault(x => x.Name == columningResult.EditPropertyName);
+                                Console.WriteLine("i am text");
                                 <AuthorizeView Roles="admin">
                                     <Authorized>
                                         <td>
                                             <input class="form-control"
-                                                   value="@((string)editProperty.GetValue(_rowEditTypeColumns))"
+                                                   value="@(columningResult.Value.ToString())"
                                                    @oninput="@((e) => SetStringPropertyValue(editProperty , e.Value.ToString()))" />
 
                                         </td>
@@ -50,6 +52,7 @@ else
                             }
                             else
                             {
+                                Console.WriteLine("i am not text");
                                 <td>@columningResult.Value</td>
                             }
                         }
