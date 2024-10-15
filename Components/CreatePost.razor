@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Web
 
-@if (isloading)
+@if (_isloading)
 {
     <Waiting text="Loading editor..."></Waiting>
 }
@@ -22,10 +22,10 @@ else
                         <InputFile id="image" class="form-control" OnChange="HandleImageUpload" />
                     </div>
                 </div>
-                @if (!string.IsNullOrEmpty(ImagePreviewUrl))
+                @if (!string.IsNullOrEmpty(_imagePreviewUrl))
                 {
                     <div class="col-3">
-                        <img src="@ImagePreviewUrl" alt="Uploaded Image" style="max-width: 100px; max-height: 100px; height: auto; width: auto;" />
+                        <img src="@_imagePreviewUrl" alt="Uploaded Image" style="max-width: 100px; max-height: 100px; height: auto; width: auto;" />
                     </div>
                 }
             </div>
@@ -33,7 +33,7 @@ else
                 <div class="col">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <InputText id="title" class="form-control" @bind-Value="CreatePostCommand.Title" />
+                        <InputText id="title" class="form-control" @bind-Value="_createPostCommand.Title" />
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@ else
                 <div class="col">
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <select id="category" class="form-select" @bind="CreatePostCommand.CategoryId">
+                        <select id="category" class="form-select" @bind="_createPostCommand.CategoryId">
                             <option value="">Select a category</option>
                             @foreach (var category in _categories)
                             {
@@ -55,7 +55,12 @@ else
                 <div class="col">
                     <div class="mb-3">
                         <label for="tags" class="form-label">Tags</label>
-                        <TagManager OnTagsSelected="UpdateSelectedTags"></TagManager>
+                    <TagManager 
+                        Tags="_tags" 
+                        SelectedTags="_selectedTags" 
+                        CreatingTagsSelected_Handler="CreatingTagsSelected_Handling" 
+                        ExistingTagsSelected_Handler="ExistingTagsSelected_Handling" 
+                        TagDeleted_Handler="TagDeleted_Handling"></TagManager>
                     </div>
                 </div>
             </div>

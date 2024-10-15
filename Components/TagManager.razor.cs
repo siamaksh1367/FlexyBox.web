@@ -1,5 +1,3 @@
-// TagManager.razor.cs
-using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreateTag;
 using FlexyBox.core.Queries.SearchTag;
 using Microsoft.AspNetCore.Components;
@@ -9,36 +7,32 @@ namespace FlexyBox.web.Components
 {
     public partial class TagManager
     {
-        private string searchTerm = string.Empty;
-        private List<GetAllTagsResponse> _tags = new();
-        private List<GetAllTagsResponse> _filteredTags = new();
-        private List<GetAllTagsResponse> _selectedTags = new();
-        private const int MaxLengthAttribute = 6;
-
-        [Inject]
-        public ITagService TagService { get; set; }
+        [Parameter]
+        public List<GetTagsResponse> SelectedTags { get; set; }
+        [Parameter]
+        public List<GetTagsResponse> Tags { get; set; }
 
         [Parameter]
-        public EventCallback<List<int>> OnTagsSelected { get; set; }
+        public EventCallback<GetTagsResponse> ExistingTagsSelected_Handler { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadItemsAsync();
-        }
+        [Parameter]
+        public EventCallback<CreateTagCommand> CreatingTagsSelected_Handler { get; set; }
 
-        private async Task LoadItemsAsync()
-        {
-            _tags = await TagService.GetAllTag().ExecuteAsync<List<GetAllTagsResponse>>();
-        }
+        [Parameter]
+        public EventCallback<GetTagsResponse> TagDeleted_Handler { get; set; }
+
+        private string _searchTerm = string.Empty;
+        private const int MaxLengthAttribute = 6;
+        private List<GetTagsResponse> _filteredTags = new();
 
         private void OnInputChange(ChangeEventArgs e)
         {
-            searchTerm = e.Value?.ToString() ?? string.Empty;
+            _searchTerm = e.Value?.ToString() ?? string.Empty;
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
+            if (!string.IsNullOrWhiteSpace(_searchTerm))
             {
-                _filteredTags = _tags
-                    .Where(item => item.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                _filteredTags = Tags
+                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && !SelectedTags.Contains(item))
                     .ToList();
             }
             else
@@ -49,51 +43,44 @@ namespace FlexyBox.web.Components
 
         private async Task HandleKeyDown(KeyboardEventArgs e)
         {
-            if (e.Key == "Enter" && !string.IsNullOrEmpty(searchTerm))
+            if (e.Key == "Enter" && !string.IsNullOrEmpty(_searchTerm))
             {
-                if (!(_selectedTags.Count < MaxLengthAttribute))
+                if (SelectedTags.Count < MaxLengthAttribute)
                 {
-                    throw new Exception("maximum tags are added");
+                    var existingTag = Tags.FirstOrDefault(t => t.Name.Equals(_searchTerm, StringComparison.OrdinalIgnoreCase));
+                    if (existingTag != null)
+                    {
+                        await ExistingTagsSelected_Handler.InvokeAsync(existingTag);
+                    }
+                    else
+                    {
+                        var creatingTag = new CreateTagCommand(_searchTerm);
+                        await CreatingTagsSelected_Handler.InvokeAsync(creatingTag);
+                    }
                 }
-                var existingTag = _tags.FirstOrDefault(t => t.Name.Equals(searchTerm, StringComparison.OrdinalIgnoreCase));
-                if (existingTag != null)
-                {
-                    Console.WriteLine(string.Join(",", _selectedTags.Select(x => x.Id.ToString() + ":" + x.Name)));
-                    Console.WriteLine(existingTag.Id.ToString() + existingTag.Name.ToString());
-
-                    SelectItem(existingTag);
-                }
-                else
-                {
-                    var newTag = new CreateTagCommand(searchTerm);
-                    var addedTag = await TagService.CreateTag(newTag).ExecuteAsync<GetAllTagsResponse>();
-                    Console.WriteLine(string.Join(",", _selectedTags.Select(x => x.Id.ToString() + ":" + x.Name)));
-                    Console.WriteLine(addedTag.Id.ToString() + addedTag.Name.ToString());
-                    _tags.Add(addedTag);
-                    _selectedTags.Add(addedTag);
-                    searchTerm = string.Empty;
-                    _filteredTags.Clear();
-                }
+                resetSearchBar();
             }
         }
 
-        private async Task SelectItem(GetAllTagsResponse item)
+        private void resetSearchBar()
         {
-            if (_selectedTags.Count < MaxLengthAttribute && !_selectedTags.Any(t => t.Name == item.Name))
-            {
-                Console.WriteLine(string.Join(",", _selectedTags.Select(x => x.Id.ToString() + ":" + x.Name)));
-                Console.WriteLine(item.Id.ToString() + item.Name.ToString());
-                _selectedTags.Add(item);
-                await OnTagsSelected.InvokeAsync(_selectedTags.Select(t => t.Id).ToList());
-                searchTerm = string.Empty;
-                _filteredTags.Clear();
-            }
+            _searchTerm = string.Empty;
+            _filteredTags.Clear();
+            StateHasChanged();
         }
 
-        private void DeleteSelectedTag(GetAllTagsResponse tag)
+        private async Task SelectTag(GetTagsResponse existingTag)
         {
-            _selectedTags.Remove(tag);
-            OnTagsSelected.InvokeAsync(_selectedTags.Select(t => t.Id).ToList());
+            if (SelectedTags.Count < MaxLengthAttribute)
+            {
+                await ExistingTagsSelected_Handler.InvokeAsync(existingTag);
+            }
+            resetSearchBar();
+        }
+
+        private async Task DeleteSelectedTag(GetTagsResponse deletedTag)
+        {
+            await TagDeleted_Handler.InvokeAsync(deletedTag);
         }
     }
 }
