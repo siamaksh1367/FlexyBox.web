@@ -22,7 +22,6 @@ namespace FlexyBox.web.Components
             {
                 await AddCategory_Handler.InvokeAsync(_createCategoryCommand);
                 _createCategoryCommand = new CreateCategoryCommand(string.Empty, string.Empty);
-                StateHasChanged();
             }
             else
             {

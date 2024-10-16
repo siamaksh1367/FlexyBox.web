@@ -19,7 +19,7 @@ namespace FlexyBox.web.Pages
             {
                 PostId = postId;
 
-                var post = await PostService.GetPostWithAllDetails(PostId).ExecuteAsync<GetPostsIncludingDetailsQuery>();
+                var post = await PostService.GetOnePostWithAllDetails(PostId).ExecuteAsync<GetPostsIncludingDetailsQuery>();
             }
             else
             {

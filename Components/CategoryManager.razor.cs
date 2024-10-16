@@ -35,8 +35,12 @@ namespace FlexyBox.web.Components
             {
                 var createdCategory = await CategoryService.CreateCategory(createCategoryCommand).ExecuteAsync<GetCategoryResponse>();
                 _categories.Add(createdCategory);
+                var temp = new List<GetCategoryResponse>();
+                foreach (var item in _categories)
+                    temp.Add(new GetCategoryResponse(item.Id, item.Name, item.Description));
+                _categories = temp;
+                StateHasChanged();
             }
-            StateHasChanged();
         }
 
         public async Task DeleteCategory_Handling(DeleteCategoryCommand deleteCategoryCommand)

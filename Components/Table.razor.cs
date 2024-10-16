@@ -23,22 +23,25 @@ namespace FlexyBox.web.Components
 
         private List<PropertyInfo> _rowEditTypeColumns = new List<PropertyInfo>();
         private List<Row<RowDataType>> _rowsWithEditFlag = new List<Row<RowDataType>>();
-
-        protected override Task OnAfterRenderAsync(bool firstRender)
+        protected override Task OnInitializedAsync()
         {
-            if (firstRender)
+            _rowEditTypeColumns = typeof(RowEditType).GetProperties()
+                        .Where(p => p.CanRead && p.CanWrite).ToList();
+            _rowsWithEditFlag = Rows.Select(x => new Row<RowDataType>()
             {
-                _rowEditTypeColumns = typeof(RowEditType).GetProperties()
-                            .Where(p => p.CanRead && p.CanWrite).ToList();
-                _rowsWithEditFlag = Rows.Select(x => new Row<RowDataType>()
-                {
-                    Data = x,
-                    EditMode = false
-                }).ToList();
-                StateHasChanged();
-            }
-            return base.OnAfterRenderAsync(firstRender);
+                Data = x,
+                EditMode = false
+            }).ToList();
+            return base.OnInitializedAsync();
         }
+        //protected override Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    if (firstRender)
+        //    {
+        //        StateHasChanged();
+        //    }
+        //    return base.OnAfterRenderAsync(firstRender);
+        //}
         private void Start_Editing(Row<RowDataType> editingRow)
         {
             for (int i = 0; i < _rowsWithEditFlag.Count(); i++)
@@ -64,7 +67,17 @@ namespace FlexyBox.web.Components
             }
             StateHasChanged();
         }
-
+        protected override Task OnParametersSetAsync()
+        {
+            _rowEditTypeColumns = typeof(RowEditType).GetProperties()
+                        .Where(p => p.CanRead && p.CanWrite).ToList();
+            _rowsWithEditFlag = Rows.Select(x => new Row<RowDataType>()
+            {
+                Data = x,
+                EditMode = false
+            }).ToList();
+            return base.OnParametersSetAsync();
+        }
         private void Cancel_Editing()
         {
             foreach (var row in _rowsWithEditFlag)
