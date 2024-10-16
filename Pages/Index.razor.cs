@@ -1,6 +1,7 @@
 using FlexyBox.common;
 using FlexyBox.contract.Services;
 using FlexyBox.core.Queries.GetCategories;
+using FlexyBox.core.Queries.GetPost;
 using FlexyBox.core.Queries.GetPosts;
 using FlexyBox.core.Queries.GetTags;
 using Microsoft.AspNetCore.Components;
@@ -20,7 +21,7 @@ namespace FlexyBox.web.Pages
         private List<GetTagResponse> _tags;
         private List<GetCategoryResponse> _categories;
 
-        private GetPostQuery _getPostQuery = new();
+        private GetPostsQuery _getPostQuery = new();
         private bool _isLoading;
 
         protected override async Task OnInitializedAsync()
@@ -41,7 +42,7 @@ namespace FlexyBox.web.Pages
             return base.OnAfterRenderAsync(firstRender);
         }
 
-        public async Task SetSearch_Handling(GetPostQuery getPostQuery)
+        public async Task SetSearch_Handling(GetPostsQuery getPostQuery)
         {
             Console.WriteLine("index:SetSearch_Handling" + string.Join(",", getPostQuery.TagIds));
             _isLoading = true;
@@ -51,7 +52,7 @@ namespace FlexyBox.web.Pages
             _isLoading = false;
         }
 
-        public async Task SetPage_Handling(GetPostQuery getPostQuery)
+        public async Task SetPage_Handling(GetPostsQuery getPostQuery)
         {
             Console.WriteLine("index:SetPage_Handling" + getPostQuery.Offset);
             _isLoading = true;

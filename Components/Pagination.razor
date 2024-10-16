@@ -11,7 +11,7 @@
             else
             {
                 <li class="page-item" @onclick="()=>Page_ChangedAsync(item)">
-                    <a class="page-link" href="#">@((item + 1).ToString())</a>
+                    <a class="page-link" href="@("#"+item)">@((item + 1).ToString())</a>
                 </li>
             }
         }

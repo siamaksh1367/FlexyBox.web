@@ -1,4 +1,12 @@
-﻿@page "/post/{id}"
+﻿@page "/post/{id:int}"
+@using FlexyBox.web.Components
 @layout BackedLayout;
-<h1>go back </h1>
+@if (_isLoading)
+{
+<Waiting text="Loading post..."></Waiting>    
+}
+else
+{
+    <ShowPost Post="_post"></ShowPost>
+}
 

@@ -1,4 +1,4 @@
-using FlexyBox.core.Queries.GetPosts;
+using FlexyBox.core.Queries.GetPost;
 using Microsoft.AspNetCore.Components;
 
 namespace FlexyBox.web.Components

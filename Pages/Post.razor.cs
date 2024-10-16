@@ -1,29 +1,26 @@
 using FlexyBox.contract.Services;
+using FlexyBox.core.Queries.GetPost;
 using Microsoft.AspNetCore.Components;
 
 namespace FlexyBox.web.Pages
 {
     public partial class Post
     {
+        private bool _isLoading;
+        private GetPostResponse _post;
+
         [Parameter]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [Inject]
         public IPostService PostService { get; set; }
-        private int PostId;
 
-        protected override async Task OnParametersSetAsync()
+
+        protected override async Task OnInitializedAsync()
         {
-            if (int.TryParse(Id, out int postId))
-            {
-                PostId = postId;
-
-                //var post = await PostService.GetOnePostWithAllDetails(PostId).ExecuteAsync<GetPostQuery>();
-            }
-            else
-            {
-                // Handle invalid 'id' scenario
-            }
+            _isLoading = true;
+            _post = await PostService.GetPost(new GetPostQuery() { Id = Id }).ExecuteAsync<GetPostResponse>();
+            _isLoading = false;
         }
     }
 }

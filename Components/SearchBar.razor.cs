@@ -10,7 +10,7 @@ namespace FlexyBox.web.Components
     {
         private GetCategoryResponse _selectedCategory = new GetCategoryResponse(0, string.Empty, string.Empty);
         private List<GetTagResponse> _selectedTags = new List<GetTagResponse>();
-        private GetPostQuery _getPostQuery = new GetPostQuery();
+        private GetPostsQuery _getPostQuery = new GetPostsQuery();
 
         [Parameter]
         public List<GetCategoryResponse> Categories { get; set; }
@@ -18,7 +18,7 @@ namespace FlexyBox.web.Components
         public List<GetTagResponse> Tags { get; set; }
 
         [Parameter]
-        public EventCallback<GetPostQuery> SetSearch_Handler { get; set; }
+        public EventCallback<GetPostsQuery> SetSearch_Handler { get; set; }
 
         private async Task CreatingTagsSelected_Handling(CreateTagCommand createTagCommand)
         {

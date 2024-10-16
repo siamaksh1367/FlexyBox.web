@@ -9,11 +9,10 @@ using Microsoft.AspNetCore.Components.Forms;
 
 namespace FlexyBox.web.Components
 {
-    public partial class CreatePost
+    public partial class ModifyPost
     {
         [Inject]
         public ICategoryService CategoryService { get; set; }
-
         [Inject]
         public ITagService TagService { get; set; }
         [Inject]
@@ -83,6 +82,7 @@ namespace FlexyBox.web.Components
             if (!string.IsNullOrEmpty(_createPostCommand.Content))
             {
                 var createdPost = await PostService.CreatePost(_createPostCommand).ExecuteAsync<CreatePostResponse>();
+                NavigationManager.NavigateTo($"/post/{createdPost.Id}");
             }
         }
     }

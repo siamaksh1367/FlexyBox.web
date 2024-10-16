@@ -16,7 +16,7 @@ namespace FlexyBox.web.Components
         public int CountAll { get; set; }
 
         [Parameter]
-        public EventCallback<GetPostQuery> SetPage_Handler { get; set; }
+        public EventCallback<GetPostsQuery> SetPage_Handler { get; set; }
 
         protected override Task OnInitializedAsync()
         {
@@ -27,7 +27,7 @@ namespace FlexyBox.web.Components
         private async Task Page_ChangedAsync(int selectedPage)
         {
             Console.WriteLine(selectedPage);
-            await SetPage_Handler.InvokeAsync(new GetPostQuery() { Offset = selectedPage });
+            await SetPage_Handler.InvokeAsync(new GetPostsQuery() { Offset = selectedPage });
         }
     }
 

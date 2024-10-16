@@ -1,16 +1,28 @@
 ﻿@inject NavigationManager NavigationManager
 
 <div class="card mb-4">
-    <img src="@($"data:image/png;base64,{Convert.ToBase64String(GetPostsIncludingDetailsResponse.Image)}")" class="card-img-top" style="max-width: 100px; max-height: 100px; height: auto; width: auto;" alt="getPostsIncludingDetailsResponse Image">
+    <img src="@($"data:image/png;base64,{Convert.ToBase64String(GetPostResponse.Image)}")"
+         class="card-img-top"
+         style="max-width: 100px; max-height: 100px; height: auto; width: auto;"
+         alt="getPostResponse Image">
+
     <div class="card-body">
-        <h5 class="card-title">@GetPostsIncludingDetailsResponse.Title</h5>
+        <h5 class="card-title">@GetPostResponse.Title</h5>
         <p class="card-text">
-            <small class="text-muted">Category: @GetPostsIncludingDetailsResponse.Category</small><br />
-            <small class="text-muted">Tags: @string.Join(", ", GetPostsIncludingDetailsResponse.Tags)</small><br />
-            <small class="text-muted">Comments: @GetPostsIncludingDetailsResponse.CommentsCount</small><br />
-            <small class="text-muted">Posted by: @GetPostsIncludingDetailsResponse.UserName</small>
+            <small class="text-muted">Category: @GetPostResponse.Category</small><br />
+            <small class="text-muted">Comments: @GetPostResponse.CommentsCount</small><br />
+            <small class="text-muted">Posted by: @GetPostResponse.UserName</small>
         </p>
+
+        <div class="mb-2">
+            @foreach (var tag in GetPostResponse.Tags)
+            {
+                <span class="badge bg-primary me-2">
+                    @tag
+                </span>
+            }
+        </div>
+
         <button class="btn btn-primary" @onclick="NavigateToPostDetails">Read More</button>
     </div>
 </div>
-
