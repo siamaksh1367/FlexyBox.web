@@ -1,8 +1,5 @@
 ﻿@using FlexyBox.core.Queries.GetPostsIncludingDetails
-@inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
-
-
 
 <div class="card mb-4">
     <img src="@($"data:image/png;base64,{Convert.ToBase64String(GetPostsIncludingDetailsResponse.Image)}")" class="card-img-top" style="max-width: 100px; max-height: 100px; height: auto; width: auto;" alt="getPostsIncludingDetailsResponse Image">
@@ -20,45 +17,3 @@
     </div>
 </div>
 
-<!-- Modal for displaying comments -->
-<div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="commentsModalLabel">Comments</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @if (GetPostsIncludingDetailsResponse.CommentsCount == 0)
-                {
-                    <p>No comments available.</p>
-                }
-                else
-                {
-                    <ul>
-                        @foreach (var comment in GetComments())
-                        {
-                            <li>@comment</li>
-                        }
-                    </ul>
-                }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@code {
-    // Simulating fetching comments for the post. Replace with actual logic.
-    private List<string> GetComments()
-    {
-        return new List<string>
-        {
-            "Great post!",
-            "I learned a lot from this article.",
-            "Very informative, thanks for sharing!"
-        };
-    }
-}

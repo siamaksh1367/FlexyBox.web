@@ -18,7 +18,7 @@
                        RowEditItem="@_updateCategoryCommand"
                        RowDataType="GetCategoryResponse"
                        RowEditType="UpdateCategoryCommand"
-                       Rows="@Categories"
+                       Rows="@Categories.OrderBy(x=>x.Name).ToList()"
                        ShowActions="true"
                        RowDataColumns="@_rowDataColumns"
                        Delete_Handler="(x)=>DeleteCategory_Handling(x)"

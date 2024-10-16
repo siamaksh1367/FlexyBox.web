@@ -23,10 +23,7 @@ namespace FlexyBox.web.Components
         private Task<AuthenticationState> authenticationStateTask { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            Console.WriteLine("gcas");
             _categories = await CategoryService.GetAllCategories().ExecuteAsync<List<GetCategoryResponse>>();
-            Console.WriteLine("gcad");
-
             await base.OnInitializedAsync();
         }
 
@@ -39,6 +36,7 @@ namespace FlexyBox.web.Components
                 var createdCategory = await CategoryService.CreateCategory(createCategoryCommand).ExecuteAsync<GetCategoryResponse>();
                 _categories.Add(createdCategory);
             }
+            StateHasChanged();
         }
 
         public async Task DeleteCategory_Handling(DeleteCategoryCommand deleteCategoryCommand)
