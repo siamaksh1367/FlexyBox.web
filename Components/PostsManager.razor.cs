@@ -25,10 +25,13 @@ namespace FlexyBox.web.Components
 
         private async Task SetSearch_Handling(GetPostQuery getPostQuery)
         {
+            Console.WriteLine("SetSearch_Handling" + string.Join(",", getPostQuery.TagIds));
+
             await SetSearch_Handler.InvokeAsync(getPostQuery);
         }
         private async Task SetPage_Handling(GetPostQuery getPostQuery)
         {
+            Console.WriteLine("SetPage_Handling" + getPostQuery.Offset);
             await SetPage_Handler.InvokeAsync(getPostQuery);
         }
     }

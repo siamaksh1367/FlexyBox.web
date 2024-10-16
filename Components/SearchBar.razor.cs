@@ -16,6 +16,7 @@ namespace FlexyBox.web.Components
         public List<GetCategoryResponse> Categories { get; set; }
         [Parameter]
         public List<GetTagResponse> Tags { get; set; }
+
         [Parameter]
         public EventCallback<GetPostQuery> SetSearch_Handler { get; set; }
 
@@ -32,12 +33,14 @@ namespace FlexyBox.web.Components
 
         private void ExistingTagsSelected_Handling(GetTagResponse existingTag)
         {
+            Console.WriteLine("ExistingTagsSelected_Handling" + string.Join(",", _selectedTags.Select(x => x.Id.ToString())));
             if (!_selectedTags.Contains(existingTag))
                 _selectedTags.Add(existingTag);
             StateHasChanged();
         }
         private void Search_Changed(Microsoft.AspNetCore.Components.Web.MouseEventArgs e)
         {
+            Console.WriteLine("Search_Changed" + string.Join(",", _selectedTags.Select(x => x.Id.ToString())));
             _getPostQuery.TagIds = _selectedTags.Select(x => x.Id).ToList();
             _getPostQuery.CategoryId = _selectedCategory.Id;
             SetSearch_Handler.InvokeAsync(_getPostQuery);

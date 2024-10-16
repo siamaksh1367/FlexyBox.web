@@ -6,6 +6,7 @@ namespace FlexyBox.web.Components
     public partial class Pagination
     {
         private int _PageCount;
+        private List<int> _numbers;
 
         [Parameter]
         public int Offset { get; set; }
@@ -19,14 +20,16 @@ namespace FlexyBox.web.Components
 
         protected override Task OnInitializedAsync()
         {
-            _PageCount = CountAll / Limit + 1;
+            _PageCount = (CountAll / Limit) + 1;
+            _numbers = Enumerable.Range(0, _PageCount).ToList();
             return base.OnInitializedAsync();
         }
         private async Task Page_ChangedAsync(int selectedPage)
         {
+            Console.WriteLine(selectedPage);
             await SetPage_Handler.InvokeAsync(new GetPostQuery() { Offset = selectedPage });
         }
-
-
     }
+
+
 }

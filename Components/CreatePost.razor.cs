@@ -67,7 +67,7 @@ namespace FlexyBox.web.Components
             var file = e.GetMultipleFiles(1).FirstOrDefault();
             if (file != null)
             {
-                using var stream = file.OpenReadStream(maxAllowedSize: 2 * 1024 * 1024); // Limit size to 2MB
+                using var stream = file.OpenReadStream(maxAllowedSize: 2 * 1024 * 1024);
                 using var memoryStream = new MemoryStream();
                 await stream.CopyToAsync(memoryStream);
                 _createPostCommand.Image = memoryStream.ToArray();
@@ -75,7 +75,7 @@ namespace FlexyBox.web.Components
             }
         }
 
-        private async Task HandleValidSubmit()
+        private async Task Save_Handler()
         {
             var text = await _blazoredTextEditor.GetHTML();
             _createPostCommand.Content = text;

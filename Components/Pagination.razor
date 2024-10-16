@@ -1,16 +1,18 @@
-﻿<nav aria-label="...">
+﻿<nav aria-label="..." class="d-flex justify-content-center align-items-center">
     <ul class="pagination pagination-sm">
-        @for (int i = 0; i < _PageCount; i++)
+        @foreach (var item in _numbers)
         {
-            if (i==Offset)
+            if (item == Offset)
             {
-                <li class="page-item disabled" @onclick="()=>Page_ChangedAsync(i)">
-                    <a class="page-link" href="#" tabindex="-1">@(i+1)</a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">@((item + 1).ToString())</a>
                 </li>
             }
             else
             {
-                <li class="page-item"><a class="page-link" href="#">i+1</a></li>
+                <li class="page-item" @onclick="()=>Page_ChangedAsync(item)">
+                    <a class="page-link" href="#">@((item + 1).ToString())</a>
+                </li>
             }
         }
     </ul>

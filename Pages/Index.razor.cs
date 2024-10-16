@@ -43,6 +43,7 @@ namespace FlexyBox.web.Pages
 
         public async Task SetSearch_Handling(GetPostQuery getPostQuery)
         {
+            Console.WriteLine("index:SetSearch_Handling" + string.Join(",", getPostQuery.TagIds));
             _isLoading = true;
             _getPostQuery.TagIds = getPostQuery.TagIds;
             _getPostQuery.CategoryId = getPostQuery.CategoryId;
@@ -52,6 +53,7 @@ namespace FlexyBox.web.Pages
 
         public async Task SetPage_Handling(GetPostQuery getPostQuery)
         {
+            Console.WriteLine("index:SetPage_Handling" + getPostQuery.Offset);
             _isLoading = true;
             _getPostQuery.Offset = getPostQuery.Offset;
             _posts = await PostService.GetPosts(_getPostQuery).ExecuteAsync<WithCount<GetPostResponse>>();

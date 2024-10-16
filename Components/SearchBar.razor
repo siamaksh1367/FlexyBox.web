@@ -1,7 +1,7 @@
 ﻿
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col">
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select id="category" class="form-select" @bind="_selectedCategory.Id">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3">
+        <div class="col">
             <div class="mb-3">
                 <label for="tags" class="form-label ">Tags</label>
                 <TagManager Tags="Tags"
@@ -27,9 +27,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3">
+        <div class="col">
             <button type="button" @onclick="Search_Changed" class="btn btn-primary">Search</button>
         </div>
     </div>
 </div>
-}
