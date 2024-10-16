@@ -1,0 +1,19 @@
+﻿<nav aria-label="...">
+    <ul class="pagination pagination-sm">
+        @for (int i = 0; i < _PageCount; i++)
+        {
+            if (i==Offset)
+            {
+                <li class="page-item disabled" @onclick="()=>Page_ChangedAsync(i)">
+                    <a class="page-link" href="#" tabindex="-1">@(i+1)</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" href="#">i+1</a></li>
+            }
+        }
+    </ul>
+</nav>
+
+

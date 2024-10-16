@@ -1,5 +1,4 @@
 using FlexyBox.contract.Services;
-using FlexyBox.core.Queries.GetPostsIncludingDetails;
 using Microsoft.AspNetCore.Components;
 
 namespace FlexyBox.web.Pages
@@ -19,7 +18,7 @@ namespace FlexyBox.web.Pages
             {
                 PostId = postId;
 
-                var post = await PostService.GetOnePostWithAllDetails(PostId).ExecuteAsync<GetPostsIncludingDetailsQuery>();
+                //var post = await PostService.GetOnePostWithAllDetails(PostId).ExecuteAsync<GetPostQuery>();
             }
             else
             {

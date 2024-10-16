@@ -1,4 +1,4 @@
-using FlexyBox.core.Queries.GetPostsIncludingDetails;
+using FlexyBox.core.Queries.GetPosts;
 using Microsoft.AspNetCore.Components;
 
 namespace FlexyBox.web.Components
@@ -6,7 +6,7 @@ namespace FlexyBox.web.Components
     public partial class PostCard
     {
         [Parameter]
-        public GetPostsIncludingDetailsResponse GetPostsIncludingDetailsResponse { get; set; }
+        public GetPostResponse GetPostsIncludingDetailsResponse { get; set; }
 
         private void NavigateToPostDetails()
         {

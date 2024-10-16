@@ -4,7 +4,7 @@
         <div class="col-3">
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
-                <select id="category" class="form-select" @bind="SelectedCategory.Id">
+                <select id="category" class="form-select" @bind="_selectedCategory.Id">
                     <option value="">Select a category</option>
                     @foreach (var category in Categories)
                     {
@@ -19,7 +19,7 @@
             <div class="mb-3">
                 <label for="tags" class="form-label ">Tags</label>
                 <TagManager Tags="Tags"
-                            SelectedTags="SelectedTags"
+                            SelectedTags="_selectedTags"
                             CreatingTagsSelected_Handler="CreatingTagsSelected_Handling"
                             ExistingTagsSelected_Handler="ExistingTagsSelected_Handling"
                             TagDeleted_Handler="TagDeleted_Handling"></TagManager>
@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-3">
-            <button type="button" @onclick="HandleValidSubmit" class="btn btn-primary">Search</button>
+            <button type="button" @onclick="Search_Changed" class="btn btn-primary">Search</button>
         </div>
     </div>
 </div>

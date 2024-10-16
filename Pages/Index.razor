@@ -1,4 +1,22 @@
 ﻿@page "/"
 @using Blazored.TextEditor
 @using FlexyBox.web.Components
-<AllPosts></AllPosts>
+@if (_isLoading)
+{
+    <Waiting text="Fetching Posts..."></Waiting>
+}
+else
+{
+    
+        <PostsManager Posts="_posts.Response"
+                      Categories="_categories"
+                      Tags="_tags"
+                      CountAll="_posts.Count"
+                      Offset="_getPostQuery.Offset"
+                      SetSearch_Handler="(x)=>SetSearch_Handling(x)"
+                      SetPage_Handler="(x)=>SetPage_Handling(x)">
+        </PostsManager>
+
+   
+}
+

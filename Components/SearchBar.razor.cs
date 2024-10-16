@@ -1,6 +1,6 @@
 using FlexyBox.core.Commands.CreateTag;
 using FlexyBox.core.Queries.GetCategories;
-using FlexyBox.core.Queries.GetPostsIncludingDetails;
+using FlexyBox.core.Queries.GetPosts;
 using FlexyBox.core.Queries.GetTags;
 using Microsoft.AspNetCore.Components;
 
@@ -8,46 +8,39 @@ namespace FlexyBox.web.Components
 {
     public partial class SearchBar
     {
+        private GetCategoryResponse _selectedCategory = new GetCategoryResponse(0, string.Empty, string.Empty);
+        private List<GetTagResponse> _selectedTags = new List<GetTagResponse>();
+        private GetPostQuery _getPostQuery = new GetPostQuery();
+
         [Parameter]
         public List<GetCategoryResponse> Categories { get; set; }
         [Parameter]
-        public GetCategoryResponse SelectedCategory { get; set; }
+        public List<GetTagResponse> Tags { get; set; }
         [Parameter]
-        public List<GetTagsResponse> Tags { get; set; }
-        [Parameter]
-        public List<GetTagsResponse> SelectedTags { get; set; }
-        [Parameter]
-        public EventCallback<GetPostsIncludingDetailsQuery> SetGetPostsIncludingDetailsQuery_Handler { get; set; }
+        public EventCallback<GetPostQuery> SetSearch_Handler { get; set; }
 
-        protected override Task OnAfterRenderAsync(bool firstRender)
-        {
-            return base.OnAfterRenderAsync(firstRender);
-        }
         private async Task CreatingTagsSelected_Handling(CreateTagCommand createTagCommand)
         {
             return;
         }
 
-        private void TagDeleted_Handling(GetTagsResponse deletedTag)
+        private void TagDeleted_Handling(GetTagResponse deletedTag)
         {
-            //_selectedTags.Remove(deletedTag);
+            _selectedTags.Remove(deletedTag);
+            StateHasChanged();
         }
 
-        private void ExistingTagsSelected_Handling(GetTagsResponse existingTag)
+        private void ExistingTagsSelected_Handling(GetTagResponse existingTag)
         {
-            //if (!_selectedTags.Contains(existingTag))
-            //    _selectedTags.Add(existingTag);
+            if (!_selectedTags.Contains(existingTag))
+                _selectedTags.Add(existingTag);
+            StateHasChanged();
         }
-
-        private async Task HandleValidSubmit()
+        private void Search_Changed(Microsoft.AspNetCore.Components.Web.MouseEventArgs e)
         {
-            //var getPostsIncludingDetailsQuery = new GetPostsIncludingDetailsQuery()
-            //{
-            //    CategoryId = _selectedCategory.Id,
-            //    TagIds = _selectedTags.Select(x => x.Id).ToList()
-            //};
-
-            //await SetGetPostsIncludingDetailsQuery_Handler.InvokeAsync(getPostsIncludingDetailsQuery);
+            _getPostQuery.TagIds = _selectedTags.Select(x => x.Id).ToList();
+            _getPostQuery.CategoryId = _selectedCategory.Id;
+            SetSearch_Handler.InvokeAsync(_getPostQuery);
         }
     }
 }

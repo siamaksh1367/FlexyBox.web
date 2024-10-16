@@ -7,32 +7,34 @@ namespace FlexyBox.web.Components
 {
     public partial class TagManager
     {
+        private string _searchTerm = string.Empty;
+        private const int MaxLengthAttribute = 6;
+        private List<GetTagResponse> _filteredTags = new();
+        private List<GetTagResponse> _selectedTags = new();
         [Parameter]
-        public List<GetTagsResponse> SelectedTags { get; set; }
-        [Parameter]
-        public List<GetTagsResponse> Tags { get; set; }
+        public List<GetTagResponse> Tags { get; set; }
 
         [Parameter]
-        public EventCallback<GetTagsResponse> ExistingTagsSelected_Handler { get; set; }
+        public List<GetTagResponse> SelectedTags { get; set; }
+
+        [Parameter]
+        public EventCallback<GetTagResponse> ExistingTagsSelected_Handler { get; set; }
 
         [Parameter]
         public EventCallback<CreateTagCommand> CreatingTagsSelected_Handler { get; set; }
 
         [Parameter]
-        public EventCallback<GetTagsResponse> TagDeleted_Handler { get; set; }
+        public EventCallback<GetTagResponse> TagDeleted_Handler { get; set; }
 
-        private string _searchTerm = string.Empty;
-        private const int MaxLengthAttribute = 6;
-        private List<GetTagsResponse> _filteredTags = new();
 
-        private void Chnage_Handling(ChangeEventArgs e)
+        private void Change_Handling(ChangeEventArgs e)
         {
             _searchTerm = e.Value?.ToString() ?? string.Empty;
 
             if (!string.IsNullOrWhiteSpace(_searchTerm))
             {
                 _filteredTags = Tags
-                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && !SelectedTags.Contains(item))
+                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && !_selectedTags.Contains(item))
                     .ToList();
             }
             else
@@ -45,7 +47,7 @@ namespace FlexyBox.web.Components
         {
             if (e.Key == "Enter" && !string.IsNullOrEmpty(_searchTerm))
             {
-                if (SelectedTags.Count < MaxLengthAttribute)
+                if (_selectedTags.Count < MaxLengthAttribute)
                 {
                     var existingTag = Tags.FirstOrDefault(t => t.Name.Equals(_searchTerm, StringComparison.OrdinalIgnoreCase));
                     if (existingTag != null)
@@ -66,19 +68,18 @@ namespace FlexyBox.web.Components
         {
             _searchTerm = string.Empty;
             _filteredTags.Clear();
-            StateHasChanged();
         }
 
-        private async Task SelectTag(GetTagsResponse existingTag)
+        private async Task SelectTag(GetTagResponse existingTag)
         {
-            if (SelectedTags.Count < MaxLengthAttribute)
+            if (_selectedTags.Count < MaxLengthAttribute)
             {
                 await ExistingTagsSelected_Handler.InvokeAsync(existingTag);
             }
             resetSearchBar();
         }
 
-        private async Task DeleteSelectedTag(GetTagsResponse deletedTag)
+        private async Task DeleteSelectedTag(GetTagResponse deletedTag)
         {
             await TagDeleted_Handler.InvokeAsync(deletedTag);
         }
