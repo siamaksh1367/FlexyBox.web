@@ -1,0 +1,19 @@
+﻿@using FlexyBox.core.Queries.GetPostsIncludingDetails
+
+@if (_isloading)
+{
+    <Waiting text="Fetching all Posts"></Waiting>
+}else{
+
+    <SearchBar SetGetPostsIncludingDetailsQuery_Handler="SetSearch_Handling"></SearchBar>
+    <div class="container">
+        <div class="row">
+            @foreach (var post in _posts.Take(6))
+            {
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <PostCard GetPostsIncludingDetailsResponse="post" />
+                </div>
+            }
+        </div>
+    </div>
+}
