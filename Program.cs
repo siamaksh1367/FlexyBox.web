@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using FlexyBox.contract.Services;
 using FlexyBox.web;
 using FlexyBox.web.Services;
@@ -31,6 +32,8 @@ internal class Program
             options.ProviderOptions.AdditionalProviderParameters.Add("audience", "https://localhost:7204/");
             options.UserOptions.RoleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
         });
+        builder.Services.AddBlazoredToast();
+
 
         builder.Services.AddTransient<ApiAuthenticationHandler>();
         builder.Services.AddHttpClient("FlexyBox", client =>

@@ -1,5 +1,12 @@
-﻿@using FlexyBox.web.Components
+﻿@using Blazored.Toast.Configuration
+@using FlexyBox.web.Components
 @inherits LayoutComponentBase
+<BlazoredToasts Position="ToastPosition.BottomRight"
+                Timeout="5"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
 <NavMenu></NavMenu>
 <main>
     @Body

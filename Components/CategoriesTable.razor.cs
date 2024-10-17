@@ -44,6 +44,7 @@ namespace FlexyBox.web.Components
         {
             isloading = true;
             await UpdateCategory_Handler.InvokeAsync(updateCategoryCommand);
+            ToastService.ShowSuccess("Your action was successful!");
             isloading = false;
         }
 
@@ -52,6 +53,7 @@ namespace FlexyBox.web.Components
             isloading = true;
             var deleteCategoryCommand = new DeleteCategoryCommand(getCategoryResponse.Id);
             await DeleteCategory_Handler.InvokeAsync(deleteCategoryCommand);
+            ToastService.ShowSuccess("Your action was successful!");
             isloading = false;
 
         }

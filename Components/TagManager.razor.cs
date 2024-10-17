@@ -76,6 +76,10 @@ namespace FlexyBox.web.Components
             {
                 await ExistingTagsSelected_Handler.InvokeAsync(existingTag);
             }
+            else
+            {
+                ToastService.ShowWarning("Maximum 5 tags si good enough");
+            }
             resetSearchBar();
         }
 

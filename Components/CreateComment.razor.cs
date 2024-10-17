@@ -1,3 +1,4 @@
+using Blazored.Toast.Services;
 using FlexyBox.core.Commands.CreateComment;
 using Microsoft.AspNetCore.Components;
 
@@ -17,7 +18,7 @@ namespace FlexyBox.web.Components
                 var comment = new CreateCommentCommand(newCommentContent, 0);
 
                 await OnCommentSubmit.InvokeAsync(comment);
-
+                ToastService.ShowSuccess("Your action was successful!");
                 newCommentContent = string.Empty;
             }
         }

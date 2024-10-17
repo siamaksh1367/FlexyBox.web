@@ -1,3 +1,4 @@
+using Blazored.Toast.Services;
 using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreateComment;
 using FlexyBox.core.Queries.GetComments;
@@ -22,6 +23,7 @@ namespace FlexyBox.web.Components
         {
             command.PostId = PostId;
             await CreateCommand_Handler.InvokeAsync(command);
+            ToastService.ShowSuccess("Your action was successful!");
         }
     }
 }

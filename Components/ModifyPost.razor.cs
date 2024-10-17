@@ -1,4 +1,5 @@
 using Blazored.TextEditor;
+using Blazored.Toast.Services;
 using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreateComment;
 using FlexyBox.core.Commands.CreatePost;
@@ -22,6 +23,7 @@ namespace FlexyBox.web.Components
 
         [Parameter]
         public GetPostResponse? GetPostResponse { get; set; }
+
         private CreatePostCommand _createPostCommand;
         private List<GetCategoryResponse> _categories;
         private List<GetTagResponse> _tags;
@@ -109,6 +111,7 @@ namespace FlexyBox.web.Components
                     var editedPostId = await PostService.Update(updatePostCommand).ExecuteAsync<int>();
                     postId = editedPostId;
                 }
+                ToastService.ShowSuccess("Your action was successful!");
                 NavigationManager.NavigateTo($"/post/{postId}");
 
             }
