@@ -1,5 +1,12 @@
 ﻿<AddCategory AddCategory_Handler="AddCategory_Handling" />
-
+@if (_categories.Count()==0)
+{
+    <NoContent Text="No Category is available"/>
+}
+else
+{
 <CategoriesTable Categories="@_categories" 
     DeleteCategory_Handler="DeleteCategory_Handling" 
     UpdateCategory_Handler="UpdateCategory_Handling" />
+    
+}

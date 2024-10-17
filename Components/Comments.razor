@@ -1,4 +1,5 @@
 ﻿@namespace YourNamespace.Components
+@using FlexyBox.web.Components
 
 
 <div class="container mt-3">
@@ -23,11 +24,7 @@
     }
     else
     {
-        <div class="row">
-            <div class="col-12">
-                <p>No comments available.</p>
-            </div>
-        </div>
+        <NoContent Text="No Comment has been made yet !!! be the first one" />
     }
 </div>
 

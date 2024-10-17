@@ -61,6 +61,7 @@ namespace FlexyBox.web.Components
             var createdTag = await TagService.CreateTag(createTagCommand).ExecuteAsync<GetTagResponse>();
             if (!_selectedTags.Contains(createdTag))
                 _selectedTags.Add(createdTag);
+            _tags.Add(createdTag);
             StateHasChanged();
         }
 
