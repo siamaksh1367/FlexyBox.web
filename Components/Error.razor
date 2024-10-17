@@ -3,9 +3,10 @@
     public Exception exception { get; set; }
     [Parameter]
     public EventCallback OnHandle { get; set; }
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+  
+    protected override async Task OnInitializedAsync()
     {
-        ToastService.ShowError($"en error has occured: {exception.Message}");
         await OnHandle.InvokeAsync();
+        ToastService.ShowError($"en error has occured: {exception.Message}");
     }
 }
