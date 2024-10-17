@@ -34,14 +34,7 @@ namespace FlexyBox.web.Components
             }).ToList();
             return base.OnInitializedAsync();
         }
-        //protected override Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    if (firstRender)
-        //    {
-        //        StateHasChanged();
-        //    }
-        //    return base.OnAfterRenderAsync(firstRender);
-        //}
+
         private void Start_Editing(Row<RowDataType> editingRow)
         {
             for (int i = 0; i < _rowsWithEditFlag.Count(); i++)

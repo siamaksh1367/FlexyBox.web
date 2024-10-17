@@ -1,5 +1,4 @@
 using Blazored.TextEditor;
-using Blazored.Toast.Services;
 using FlexyBox.contract.Services;
 using FlexyBox.core.Commands.CreateComment;
 using FlexyBox.core.Commands.CreatePost;
@@ -41,8 +40,6 @@ namespace FlexyBox.web.Components
             _tags = await TagService.GetAllTags().ExecuteAsync<List<GetTagResponse>>();
             if (GetPostResponse != null)
             {
-                Console.WriteLine(string.Join(" ", GetPostResponse.Tags));
-                Console.WriteLine(string.Join(" ", _tags.Select(x => x.Name)));
                 _selectedTags = _tags.Where(x => GetPostResponse.Tags.Contains(x.Name)).ToList();
                 _createPostCommand.Content = GetPostResponse.Content;
                 _createPostCommand.CategoryId = _categories.FirstOrDefault(x => GetPostResponse.Category == x.Name).Id;

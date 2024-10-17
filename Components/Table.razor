@@ -1,11 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 @typeparam RowDataType
 @typeparam RowEditType
-@if (Rows == null || Rows.Count==0)
-{
-    <Waiting text="Fetching categories" />
-}
-else
+@if (Rows != null && Rows.Count != 0)
 {
     <table class="table table-striped table-hover">
         <thead>
@@ -31,14 +27,12 @@ else
                 <tr>
                     @if (rowWithEditFlag.EditMode)
                     {
-                        Console.WriteLine("one row in edit mode");
                         @foreach (var column in RowDataColumns)
                         {
                             var columningResult = column(rowWithEditFlag.Data);
                             var editProperty = _rowEditTypeColumns.FirstOrDefault(x => x.Name == columningResult.EditPropertyName);
                             if (columningResult.Editable && columningResult.Type.ToLower() == "text")
                             {
-                                Console.WriteLine("i am text");
                                 <AuthorizeView Roles="admin">
                                     <Authorized>
                                         <td>
@@ -52,7 +46,6 @@ else
                             }
                             else
                             {
-                                Console.WriteLine("i am not text");
                                 <td>@columningResult.Value</td>
                             }
                         }

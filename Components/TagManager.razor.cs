@@ -34,7 +34,7 @@ namespace FlexyBox.web.Components
             if (!string.IsNullOrWhiteSpace(_searchTerm))
             {
                 _filteredTags = Tags
-                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && !SelectedTags.Contains(item))
+                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && SelectedTags.FirstOrDefault(x => x.Id == item.Id) == null)
                     .ToList();
             }
             else
@@ -62,7 +62,7 @@ namespace FlexyBox.web.Components
                 }
                 else
                 {
-                    oastService.ShowWarning("Maximum 5 tags is good enough");
+                    ToastService.ShowWarning("Maximum 5 tags is good enough");
                 }
                 resetSearchBar();
             }

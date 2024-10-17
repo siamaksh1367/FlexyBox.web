@@ -26,7 +26,6 @@ namespace FlexyBox.web.Components
         }
         private async Task Page_ChangedAsync(int selectedPage)
         {
-            Console.WriteLine(selectedPage);
             await SetPage_Handler.InvokeAsync(new GetPostsQuery() { Offset = selectedPage });
         }
     }
