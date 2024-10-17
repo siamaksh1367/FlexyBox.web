@@ -9,7 +9,7 @@ else if (_postExists)
     <div class="container mt-1">
         <div class="row">
             <div class="col">
-                @if (Post.UserName == _currentUserId)
+                @if (Post.UserName != null && _currentUserId!=null Post.UserName == _currentUserId)
                 {
                     <div class="mb-2 d-flex flex-row justify-content-end align-items-center gap-1">
                         <button class="btn btn-warning me-2" @onclick="EditPost">Edit</button>
@@ -39,11 +39,6 @@ else if (_postExists)
                             <div class="card-text">
                                 @((MarkupString)Post.Content)
                             </div>
-                        </div>
-
-                        <div class="mt-4">
-                            <h5>Comments</h5>
-                            <p>@Post.CommentsCount comments</p>
                         </div>
                     </div>
                 </div>

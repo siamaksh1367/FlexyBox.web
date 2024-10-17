@@ -22,9 +22,7 @@ namespace FlexyBox.web.Services
             var accessTokenRetrieved = tokenResult.TryGetToken(out var token);
             if (accessTokenRetrieved)
                 return token.Value;
-            else
-                throw new Exception("Failed to retrieve token");
-
+            return string.Empty;
         }
     }
 }
