@@ -24,13 +24,6 @@ else if(_postExists)
                 <div class="card">
                     <img src="@($"data:image/png;base64,{Convert.ToBase64String(Post.Image)}")" class="card-img-top" alt="@Post.Title">
                     <div class="card-body">
-                        @if (Post.UserName == _currentUserId)
-                        {
-                            <div class="mt-4">
-                                <button class="btn btn-warning me-2" @onclick="EditPost">Edit</button>
-                                <button class="btn btn-danger" @onclick="DeletePost">Delete</button>
-                            </div>
-                        }
                         <h2 class="card-title">@Post.Title</h2>
                         <small class="text-muted">Posted by: @Post.UserName</small><br />
                         <small class="text-muted">Category: @Post.Category</small>

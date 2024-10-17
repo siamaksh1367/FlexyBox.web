@@ -111,6 +111,12 @@ else
                                     <button class="ql-link"></button>
                                 </span>
                             </ToolbarContent>
+                        <EditorContent>
+                            @if (GetPostResponse != null)
+                            {
+                                @((MarkupString)_createPostCommand.Content)
+                            }
+                        </EditorContent> 
                         </BlazoredTextEditor>
                     </div>
                 </div>

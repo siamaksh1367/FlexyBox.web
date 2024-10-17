@@ -1,8 +1,10 @@
 using Blazored.TextEditor;
 using FlexyBox.contract.Services;
+using FlexyBox.core.Commands.CreateComment;
 using FlexyBox.core.Commands.CreatePost;
 using FlexyBox.core.Commands.CreateTag;
 using FlexyBox.core.Queries.GetCategories;
+using FlexyBox.core.Queries.GetPost;
 using FlexyBox.core.Queries.GetTags;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -18,6 +20,8 @@ namespace FlexyBox.web.Components
         [Inject]
         public IPostService PostService { get; set; }
 
+        [Parameter]
+        public GetPostResponse? GetPostResponse { get; set; }
         private CreatePostCommand _createPostCommand;
         private List<GetCategoryResponse> _categories;
         private List<GetTagResponse> _tags;
@@ -33,6 +37,18 @@ namespace FlexyBox.web.Components
             _createPostCommand = new CreatePostCommand(string.Empty, string.Empty, new List<int>(), 0, null);
             _categories = await CategoryService.GetAllCategories().ExecuteAsync<List<GetCategoryResponse>>();
             _tags = await TagService.GetAllTags().ExecuteAsync<List<GetTagResponse>>();
+            if (GetPostResponse != null)
+            {
+                Console.WriteLine(string.Join(" ", GetPostResponse.Tags));
+                Console.WriteLine(string.Join(" ", _tags.Select(x => x.Name)));
+                _selectedTags = _tags.Where(x => GetPostResponse.Tags.Contains(x.Name)).ToList();
+                _createPostCommand.Content = GetPostResponse.Content;
+                _createPostCommand.CategoryId = _categories.FirstOrDefault(x => GetPostResponse.Category == x.Name).Id;
+                _createPostCommand.Title = GetPostResponse.Title;
+                _createPostCommand.Image = GetPostResponse.Image;
+                _imagePreviewUrl = $"data:image/png;base64,{Convert.ToBase64String(_createPostCommand.Image)}";
+            }
+
         }
 
         protected override Task OnAfterRenderAsync(bool firstRender)
@@ -79,10 +95,22 @@ namespace FlexyBox.web.Components
             var text = await _blazoredTextEditor.GetHTML();
             _createPostCommand.Content = text;
             _createPostCommand.Tags.AddRange(_selectedTags.Select(x => x.Id));
+            var postId = 0;
             if (!string.IsNullOrEmpty(_createPostCommand.Content))
             {
-                var createdPost = await PostService.CreatePost(_createPostCommand).ExecuteAsync<CreatePostResponse>();
-                NavigationManager.NavigateTo($"/post/{createdPost.Id}");
+                if (GetPostResponse == null)
+                {
+                    var createdPost = await PostService.CreatePost(_createPostCommand).ExecuteAsync<CreatePostResponse>();
+                    postId = createdPost.Id;
+                }
+                else
+                {
+                    var updatePostCommand = new UpdatePostCommand(GetPostResponse.Id, _createPostCommand.Title, text, _selectedTags.Select(x => x.Id).ToList(), _createPostCommand.CategoryId, _createPostCommand.Image);
+                    var editedPostId = await PostService.Update(updatePostCommand).ExecuteAsync<int>();
+                    postId = editedPostId;
+                }
+                NavigationManager.NavigateTo($"/post/{postId}");
+
             }
         }
     }

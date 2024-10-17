@@ -1,7 +1,11 @@
-﻿
-
-<h3>EditPost</h3>
-
-@code {
-
+﻿@page "/posts/edit/{id:int}"
+@using FlexyBox.web.Components
+@layout BackedLayout;
+@if (_isLoading)
+{
+    <Waiting text="Loading post..."></Waiting>
+}
+else
+{
+    <ModifyPost GetPostResponse="_post"></ModifyPost>
 }
