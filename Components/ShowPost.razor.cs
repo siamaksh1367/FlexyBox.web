@@ -35,7 +35,7 @@ namespace FlexyBox.web.Components
             await PostService.DeletePost(new DeletePostCommand(Post.Id)).ExecuteAsync<int>();
             _isLoading = false;
             _postExists = false;
-            NavigationManager.NavigateTo($"javascript:history.back()");
+            NavigationManager.NavigateTo($"/");
         }
         private void EditPost(Microsoft.AspNetCore.Components.Web.MouseEventArgs e)
         {
