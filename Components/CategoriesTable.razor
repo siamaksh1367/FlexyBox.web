@@ -8,22 +8,15 @@
     </div>
     <div class="row">
         <div class="col">
-            @if (isloading)
-            {
-                <Waiting text="fetching categories..."></Waiting>
-            }
-            else
-            {
-                <Table Headers="@_headers"
-                       RowEditItem="@_updateCategoryCommand"
-                       RowDataType="GetCategoryResponse"
-                       RowEditType="UpdateCategoryCommand"
-                       Rows="@Categories.OrderBy(x=>x.Name).ToList()"
-                       ShowActions="true"
-                       RowDataColumns="@_rowDataColumns"
-                       Delete_Handler="(x)=>DeleteCategory_Handling(x)"
-                       Update_Handler="(x)=>UpdateCategory_Handling(x)"></Table>
-            }
+            <Table Headers="@_headers"
+                   RowEditItem="@_updateCategoryCommand"
+                   RowDataType="GetCategoryResponse"
+                   RowEditType="UpdateCategoryCommand"
+                   Rows="@Categories.OrderBy(x=>x.Name).ToList()"
+                   ShowActions="true"
+                   RowDataColumns="@_rowDataColumns"
+                   Delete_Handler="(x)=>DeleteCategory_Handling(x)"
+                   Update_Handler="(x)=>UpdateCategory_Handling(x)"></Table>
         </div>
     </div>
 </div>

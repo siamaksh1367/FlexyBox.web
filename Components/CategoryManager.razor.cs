@@ -13,6 +13,7 @@ namespace FlexyBox.web.Components
     public partial class CategoryManager
     {
         private List<GetCategoryResponse> _categories;
+        private bool _isLoading;
 
         [Inject]
         public ICategoryService CategoryService { get; set; }
@@ -23,8 +24,15 @@ namespace FlexyBox.web.Components
         private Task<AuthenticationState> authenticationStateTask { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            _isLoading = true;
             _categories = await CategoryService.GetAllCategories().ExecuteAsync<List<GetCategoryResponse>>();
             await base.OnInitializedAsync();
+        }
+
+        protected override Task OnAfterRenderAsync(bool firstRender)
+        {
+            _isLoading = false;
+            return base.OnAfterRenderAsync(firstRender);
         }
 
         public async Task AddCategory_Handling(CreateCategoryCommand createCategoryCommand)

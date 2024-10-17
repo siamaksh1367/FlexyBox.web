@@ -27,19 +27,6 @@ namespace FlexyBox.web.Components
             x=>new Column(){EditPropertyName="Name", Value= x.Name,Editable=true,Type="text"},
             x=>new Column(){EditPropertyName="Description",Value= x.Description,Editable=true,Type="text"}
         };
-
-        protected override async Task<Task> OnInitializedAsync()
-        {
-            isloading = true;
-            return base.OnInitializedAsync();
-        }
-
-        protected override Task OnAfterRenderAsync(bool firstRender)
-        {
-            isloading = false;
-            return base.OnAfterRenderAsync(firstRender);
-        }
-
         public async Task UpdateCategory_Handling(UpdateCategoryCommand updateCategoryCommand)
         {
             isloading = true;

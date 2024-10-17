@@ -1,12 +1,20 @@
 ﻿<AddCategory AddCategory_Handler="AddCategory_Handling" />
-@if (_categories.Count()==0)
+
+@if (_isLoading)
 {
-    <NoContent Text="No Category is available"/>
+    <Waiting text="Fetching categories"></Waiting>
 }
 else
 {
-<CategoriesTable Categories="@_categories" 
-    DeleteCategory_Handler="DeleteCategory_Handling" 
-    UpdateCategory_Handler="UpdateCategory_Handling" />
-    
+    @if (_categories == null || _categories.Count() == 0)
+    {
+        <NoContent Text="No Category is available" />
+    }
+    else
+    {
+        <CategoriesTable Categories="@_categories"
+                         DeleteCategory_Handler="DeleteCategory_Handling"
+                         UpdateCategory_Handler="UpdateCategory_Handling" />
+    }
+
 }
