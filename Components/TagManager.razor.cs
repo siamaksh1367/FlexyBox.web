@@ -8,7 +8,7 @@ namespace FlexyBox.web.Components
     public partial class TagManager
     {
         private string _searchTerm = string.Empty;
-        private const int MaxLengthAttribute = 6;
+        private const int MaxLengthAttribute = 5;
         private List<GetTagResponse> _filteredTags = new();
         private List<GetTagResponse> _selectedTags = new();
         [Parameter]
@@ -34,7 +34,7 @@ namespace FlexyBox.web.Components
             if (!string.IsNullOrWhiteSpace(_searchTerm))
             {
                 _filteredTags = Tags
-                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && !_selectedTags.Contains(item))
+                    .Where(item => item.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) && !SelectedTags.Contains(item))
                     .ToList();
             }
             else
@@ -47,7 +47,7 @@ namespace FlexyBox.web.Components
         {
             if (e.Key == "Enter" && !string.IsNullOrEmpty(_searchTerm))
             {
-                if (_selectedTags.Count < MaxLengthAttribute)
+                if (SelectedTags.Count < MaxLengthAttribute)
                 {
                     var existingTag = Tags.FirstOrDefault(t => t.Name.Equals(_searchTerm, StringComparison.OrdinalIgnoreCase));
                     if (existingTag != null)
@@ -59,6 +59,10 @@ namespace FlexyBox.web.Components
                         var creatingTag = new CreateTagCommand(_searchTerm);
                         await CreatingTagsSelected_Handler.InvokeAsync(creatingTag);
                     }
+                }
+                else
+                {
+                    oastService.ShowWarning("Maximum 5 tags is good enough");
                 }
                 resetSearchBar();
             }
@@ -72,13 +76,13 @@ namespace FlexyBox.web.Components
 
         private async Task SelectTag(GetTagResponse existingTag)
         {
-            if (_selectedTags.Count < MaxLengthAttribute)
+            if (SelectedTags.Count < MaxLengthAttribute)
             {
                 await ExistingTagsSelected_Handler.InvokeAsync(existingTag);
             }
             else
             {
-                ToastService.ShowWarning("Maximum 5 tags si good enough");
+                ToastService.ShowWarning("Maximum 5 tags is good enough");
             }
             resetSearchBar();
         }
