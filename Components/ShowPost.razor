@@ -1,28 +1,27 @@
 ﻿@using FlexyBox.core.Queries.GetPost
 
-@if (_isLoding)
+@if (_isLoading)
 {
-    <Waiting text="Deleting post ..."></Waiting>
+    <Waiting text="Loading post..."></Waiting>
 }
-else if(_postExists)
+else if (_postExists)
 {
-    <div class="container mt-4">
-        <div class="row ">
+    <div class="container mt-1">
+        <div class="row">
             <div class="col">
                 @if (Post.UserName == _currentUserId)
                 {
                     <div class="mb-2 d-flex flex-row justify-content-end align-items-center gap-1">
                         <button class="btn btn-warning me-2" @onclick="EditPost">Edit</button>
                         <button class="btn btn-danger" @onclick="DeletePost">Delete</button>
-
                     </div>
                 }
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col">
                 <div class="card">
-                    <img src="@($"data:image/png;base64,{Convert.ToBase64String(Post.Image)}")" class="card-img-top" alt="@Post.Title">
+                    <img src="@($"data:image/png;base64,{Convert.ToBase64String(Post.Image)}")" class="card-img-top" style="max-height: 300px; object-fit: cover;" alt="@Post.Title">
                     <div class="card-body">
                         <h2 class="card-title">@Post.Title</h2>
                         <small class="text-muted">Posted by: @Post.UserName</small><br />
@@ -46,12 +45,9 @@ else if(_postExists)
                             <h5>Comments</h5>
                             <p>@Post.CommentsCount comments</p>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 }
-
-

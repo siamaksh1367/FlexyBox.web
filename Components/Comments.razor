@@ -1,0 +1,34 @@
+﻿@namespace YourNamespace.Components
+
+
+<div class="container mt-3">
+    @if (AllComments != null && AllComments.Count > 0)
+    {
+        <div class="row">
+            @foreach (var comment in AllComments)
+            {
+                <div class="col-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Comment by: @comment.UserId</h5>
+                            <p class="card-text">@comment.Content</p>
+                            <p class="card-text">
+                                <small class="text-muted">Posted on: @comment.Created.ToString("MMM dd, yyyy HH:mm")</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <p>No comments available.</p>
+            </div>
+        </div>
+    }
+</div>
+
+

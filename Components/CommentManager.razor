@@ -1,0 +1,20 @@
+﻿@using YourNamespace.Components
+<AuthorizeView>
+    <Authorized>
+
+        <CreateComment OnCommentSubmit="(x)=>CreateCommand_Handling(x)"></CreateComment>
+    </Authorized>
+    <NotAuthorized>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>
+                        Login to add comments
+                    </p>
+                </div>
+            </div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+<Comments AllComments="Comments"></Comments>
+

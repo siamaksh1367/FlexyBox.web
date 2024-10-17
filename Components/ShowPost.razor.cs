@@ -9,7 +9,7 @@ namespace FlexyBox.web.Components
     public partial class ShowPost
     {
         private string? _currentUserId;
-        private bool _isLoding;
+        private bool _isLoading;
         private bool _postExists;
 
         [Parameter]
@@ -31,9 +31,9 @@ namespace FlexyBox.web.Components
         }
         private async Task DeletePost()
         {
-            _isLoding = true;
+            _isLoading = true;
             await PostService.DeletePost(new DeletePostCommand(Post.Id)).ExecuteAsync<int>();
-            _isLoding = false;
+            _isLoading = false;
             _postExists = false;
             NavigationManager.NavigateTo($"javascript:history.back()");
         }

@@ -44,6 +44,7 @@ internal class Program
         builder.Services.AddTransient<ICategoryService, CategoryService>();
         builder.Services.AddTransient<ITagService, TagService>();
         builder.Services.AddTransient<IPostService, PostService>();
+        builder.Services.AddTransient<ICommentService, CommentService>();
 
         builder.Services.AddScoped<ITokenProvider, TokenProvider>();
         builder.Services.AddTransient<HttpRequestBuilder>();
